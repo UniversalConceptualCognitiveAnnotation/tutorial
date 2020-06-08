@@ -1,0 +1,168 @@
+\makeatletter
+\newcommand*{\addFileDependency}[1]{% argument=file name and extension
+  \typeout{(#1)}
+  \@addtofilelist{#1}
+  \IfFileExists{#1}{}{\typeout{No file #1.}}
+}
+\makeatother
+ 
+\newcommand*{\myexternaldocument}[1]{%
+    \externaldocument{#1}%
+    \addFileDependency{#1.tex}%
+    \addFileDependency{#1.aux}%
+}
+
+% use \S for all references to all kinds of sections, and \P to paragraphs
+% (sadly, we cannot use the simpler \crefname{} macro because it would insert a space after the symbol)
+\crefformat{part}{\S#2#1#3}
+\crefformat{chapter}{\S#2#1#3}
+\crefformat{section}{\S#2#1#3}
+\crefformat{subsection}{\S#2#1#3}
+\crefformat{subsubsection}{\S#2#1#3}
+\crefformat{paragraph}{\P#2#1#3}
+\crefformat{subparagraph}{\P#2#1#3}
+%\crefmultiformat{part}{\S#2#1#3}{ and~\S#2#1#3}{, \S#2#1#3}{, and~\S#2#1#3}
+%\crefmultiformat{chapter}{\S#2#1#3}{ and~\S#2#1#3}{, \S#2#1#3}{, and~\S#2#1#3}
+\crefmultiformat{section}{\S#2#1#3}{ and~\S#2#1#3}{, \S#2#1#3}{, and~\S#2#1#3}
+\crefmultiformat{subsection}{\S#2#1#3}{ and~\S#2#1#3}{, \S#2#1#3}{, and~\S#2#1#3}
+\crefmultiformat{subsubsection}{\S#2#1#3}{ and~\S#2#1#3}{, \S#2#1#3}{, and~\S#2#1#3}
+\crefmultiformat{paragraph}{\P\P#2#1#3}{ and~#2#1#3}{, #2#1#3}{, and~#2#1#3}
+\crefmultiformat{subparagraph}{\P\P#2#1#3}{ and~#2#1#3}{, #2#1#3}{, and~#2#1#3}
+%\crefrangeformat{part}{\mbox{\S\S#3#1#4--#5#2#6}}
+%\crefrangeformat{chapter}{\mbox{\S\S#3#1#4--#5#2#6}}
+\crefrangeformat{section}{\mbox{\S\S#3#1#4--#5#2#6}}
+\crefrangeformat{subsection}{\mbox{\S\S#3#1#4--#5#2#6}}
+\crefrangeformat{subsubsection}{\mbox{\S\S#3#1#4--#5#2#6}}
+\crefrangeformat{paragraph}{\mbox{\P\P#3#1#4--#5#2#6}}
+\crefrangeformat{subparagraph}{\mbox{\P\P#3#1#4--#5#2#6}}
+% for \label[appsec]{...}
+\crefname{part}{Part}{Parts}
+\Crefname{part}{Part}{Parts}
+\crefname{chapter}{ch.}{ch.}
+\Crefname{chapter}{Ch.}{Ch.}
+\crefname{figure}{figure}{figures}
+\crefname{subfigure}{figure}{figures}
+\Crefname{subfigure}{Figure}{Figures}
+\crefname{appsec}{appendix}{appendices}
+\Crefname{appsec}{Appendix}{Appendices}
+\crefname{algocf}{algorithm}{algorithms}
+\Crefname{algocf}{Algorithm}{Algorithms}
+\crefname{enums,enumsi}{example}{examples}
+\Crefname{enums,enumsi}{Example}{Examples}
+\crefname{}{example}{examples} % lingmacros \toplabel has no internal name for the kind of label
+\Crefname{}{Example}{Examples}
+\crefformat{enums}{(#2#1#3)}
+\crefformat{enumsi}{(#2#1#3)}
+\crefrangeformat{enums}{\mbox{(#3#1#4--#5#2#6)}}
+\crefrangeformat{enumsi}{\mbox{(#3#1#4--#5#2#6)}}
+\crefformat{}{(#2#1#3)}
+\crefname{xnumi}{example}{examples} % gb4e
+\crefname{xnumi}{example}{examples} % gb4e
+\Crefname{xnumii}{Example}{Examples} % gb4e
+\Crefname{xnumii}{Example}{Examples} % gb4e
+\crefformat{xnumi}{(#2#1#3)} % gb4e
+\crefformat{xnumii}{(#2#1#3)} % gb4e
+\crefrangeformat{enums}{\mbox{(#3#1#4--#5#2#6)}}
+\crefrangeformat{enumsi}{\mbox{(#3#1#4--#5#2#6)}}
+\crefrangeformat{xnumi}{\mbox{(#3#1#4--#5#2#6)}} % gb4e
+\crefrangeformat{xnumii}{\mbox{(#3#1#4--#5#2#6)}} % gb4e
+\crefmultiformat{enumsi}{(#2#1#3}{, #2#1#3)}{, #2#1#3}{, #2#1#3)}
+\crefmultiformat{xnumi}{(#2#1#3}{, #2#1#3)}{, #2#1#3}{, #2#1#3)} % gb4e
+\crefmultiformat{xnumii}{(#2#1#3}{, #2#1#3)}{, #2#1#3}{, #2#1#3)} % gb4e
+\crefrangemultiformat{enumsi}{(#3#1#4--#5#2#6}{, #3#1#4--#5#2#6)}{, #3#1#4--#5#2#6}{, #3#1#4--#5#2#6)}
+\crefrangemultiformat{xnumi}{(#3#1#4--#5#2#6}{, #3#1#4--#5#2#6)}{, #3#1#4--#5#2#6}{, #3#1#4--#5#2#6)} % gb4e
+\crefrangemultiformat{xnumii}{(#3#1#4--#5#2#6}{, #3#1#4--#5#2#6)}{, #3#1#4--#5#2#6}{, #3#1#4--#5#2#6)} % gb4e
+
+\ifx\creflastconjunction\undefined%
+\newcommand{\creflastconjunction}{, and\nobreakspace} % Oxford comma for lists
+\else%
+\renewcommand{\creflastconjunction}{, and\nobreakspace} % Oxford comma for lists
+\fi%
+
+\newcommand*{\Fullref}[1]{\hyperref[{#1}]{\Cref*{#1}: \nameref*{#1}}}
+\newcommand*{\fullref}[1]{\hyperref[{#1}]{\cref*{#1}: \nameref{#1}}}
+\newcommand{\fnref}[1]{fn.~\ref{#1}} % don't use \cref{} due to bug in (now out-of-date) cleveref package w.r.t. footnotes
+\newcommand{\Fnref}[1]{Fn.~\ref{#1}}
+
+\newcommand{\citeposs}[2][]{\citeauthor{#2}'s (\citeyear[#1]{#2})}
+\newcommand{\Citeposs}[2][]{\Citeauthor{#2}'s (\citeyear[#1]{#2})}
+
+
+
+\makeatletter
+\renewcommand{\@BIBLABEL}{\@emptybiblabel}
+\newcommand{\@emptybiblabel}[1]{}
+\makeatother
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newcommand{\ucca}[1]{\textcolor{gray}{\textbf{\textsf{#1}}}}
+\newcommand{\sst}[1]{\textsc{#1}}
+\newcommand{\lexcat}[1]{\textsl{#1}}
+
+
+\definecolor{orange}{rgb}{1,0.5,0}
+\definecolor{mdgreen}{rgb}{0.05,0.6,0.05}
+\definecolor{Acolor}{HTML}{EC5D57} % poppy red
+\definecolor{Pcolor}{HTML}{70BF41} % grass green
+\definecolor{Scolor}{HTML}{51A7F9} % sky blue
+\definecolor{Lcolor}{HTML}{B36AE2} % friendly purple
+\definecolor{mdblue}{rgb}{0,0,0.7}
+\definecolor{dkblue}{rgb}{0,0,0.5}
+\definecolor{dkgray}{rgb}{0.3,0.3,0.3}
+\definecolor{slate}{rgb}{0.25,0.25,0.4}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{ltgray}{rgb}{0.7,0.7,0.7}
+\definecolor{purple}{rgb}{0.7,0,1.0}
+\definecolor{lavender}{rgb}{0.65,0.55,1.0}
+
+
+
+\newcommand{\com}[1]{}
+\newcommand{\oa}[1]{\textcolor{red}{[OA: #1]}}
+\newcommand{\daniel}[1]{\footnote{\color{cyan}DH: #1}}
+\newcommand{\nss}[1]{\textcolor{magenta}{[NSS: #1]}}
+
+\newcommand{\finalversion}[1]{} % hide for now, restore for camera-ready
+
+\hyphenation{English}
+\hyphenation{PredPatt}
+\hyphenation{WordNet}
+\hyphenation{WordNets}
+\hyphenation{FrameNet}
+\hyphenation{SemCor}
+\hyphenation{SemEval}
+\hyphenation{ParsedSemCor}
+\hyphenation{VerbNet}
+\hyphenation{PennConverter}
+\hyphenation{an-aly-sis}
+\hyphenation{an-aly-ses}
+\hyphenation{base-line}
+\hyphenation{comb-over}
+\hyphenation{de-ve-lop-ed}
+\hyphenation{news-text}
+\hyphenation{nomi-nal}
+\hyphenation{per-cept}
+\hyphenation{per-cepts}
+\hyphenation{post-edit-ing}
+\hyphenation{shriv-eled}
+\hyphenation{Huddle-ston}
+\hyphenation{par-ti-ci-pant}
+\hyphenation{par-ti-ci-pants}
+\hyphenation{par-ti-ci-pa-tion}
+
+%\setlength{\belowcaptionskip}{-10pt}
+%\setlength{\parskip}{-0.085mm}
+
+%\lstset{basicstyle=\ttfamily}
+
+
+\usetikzlibrary{shapes,shapes.misc}
+
+% for confusion matrix
+\newcommand{\ApplyGradient}[1]{%
+  \pgfmathsetmacro{\PercentColor}{(#1-0)/7.97}%
+  \pgfmathsetmacro{\PercentInverse}{ifthenelse(\PercentColor > 65, 0, 100)}%
+  %\textcolor{black!\PercentColor}{#1}
+  \edef\x{\noexpand\cellcolor{red!\PercentColor}}\x\textcolor{black!\PercentInverse}{#1}%
+}
+\newcolumntype{R}{>{\small\collectcell\ApplyGradient}{c}<{\endcollectcell}}
