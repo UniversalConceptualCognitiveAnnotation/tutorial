@@ -1,0 +1,128 @@
+\documentclass[svgnames]{beamer}[10]
+\usepackage{pgf}
+% \usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{beamerthemesplit}
+\usepackage{epsfig, subfigure}
+\usepackage{graphicx} % Required for including images
+\usepackage{url}
+\usepackage{srcltx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{soul}
+\usepackage{natbib}
+\usepackage{pgfplots,pgfplotstable}
+
+\definecolor{lightblue}{rgb}{.90,.95,1}
+\sethlcolor{lightblue}
+\renewcommand<>{\hl}[1]{\only#2{\beameroriginal{\hl}}{#1}}
+\definecolor{kugreen}{RGB}{50,93,61}
+\definecolor{kugreenlys}{RGB}{132,158,139}
+\definecolor{kugreenlyslys}{RGB}{173,190,177}
+\definecolor{kugreenlyslyslys}{RGB}{214,223,216}
+\definecolor{ku}{RGB}{144,26,30}
+\definecolor{ku-yellow}{RGB}{255,249,25}
+\setbeamercovered{transparent}
+\mode<presentation>
+\usetheme[numbers,compress,sidebarshades]{PaloAlto}
+\setbeamertemplate{footline}[frame number]
+
+\usepackage{pgfpages}
+\usepackage{apalike}
+\usepackage{graphicx} % Required for including images
+\graphicspath{{figures/}} % Location of the graphics files
+\usepackage{booktabs} % Top and bottom rules for table
+\usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
+\usepackage{wrapfig} % Allows wrapping text around tables and figures
+\usepackage{lipsum,adjustbox}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{url}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{tikz,pgfplots,pgfplotstable}
+\usepackage{tikz-dependency}
+\usetikzlibrary{arrows.meta,graphs,graphs.standard,graphdrawing,quotes,shapes}
+\usegdlibrary{layered,trees}
+\setbeamertemplate{sidebar left}{}
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}
+\captionsetup{labelformat=empty}
+
+\makeatletter
+\pgfdeclareshape{vector}{
+	  \inheritsavedanchors[from={rectangle}]
+	  \inheritbackgroundpath[from={rectangle}]
+	  \inheritanchorborder[from={rectangle}]
+	  \foreach \x in {center,north east,north west,north,south,south east,south west,east,west}{
+	    \inheritanchor[from={rectangle}]{\x}
+	  }
+
+    \backgroundpath{
+      \pgftransformshift{\pgfpoint{-16pt}{-4pt}}
+		  \draw[rounded corners=2pt] (0,0) rectangle (32pt,8pt);
+    }
+
+    \beforebackgroundpath{
+      \draw[step=8pt,help lines,-] (8pt,.1pt) grid (24pt,7.9pt);
+    }
+}
+\makeatother
+
+  \usecolortheme[named=kugreen]{structure}
+  \useinnertheme{circles}
+  \usefonttheme[onlymath]{serif}
+  \setbeamercovered{transparent}
+  \setbeamertemplate{blocks}[rounded][shadow=true]
+  
+\makeatletter
+\newcommand\SoulColor{%
+  \let\set@color\beamerorig@set@color
+  \let\reset@color\beamerorig@reset@color}
+\makeatother
+\SoulColor
+
+% \logo{\includegraphics[width=0.8cm]{KULogo}}
+%\useoutertheme{infolines} 
+\title{Universal Conceptual Cognitive Annotation}
+\subtitle{Cross-lingual Semantic Representation for NLP with UCCA}
+\author{\bfseries
+  Omri Abend$^{*}$ \quad
+  Dotan Dvir$^{*}$ \\
+  Daniel Hershcovich$^{**}$ \quad
+  Jakob Prange$^{***}$ \\
+  Nathan Schneider$^{***}$}
+\institute{$^{*}$Hebrew University of Jerusalem 
+\\ $^{**}$University of Copenhagen
+\\ $^{***}$Georgetown University}
+\date{Tutorial at COLING 2020 \\
+December 12, 2020}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}{UCCA}
+    \includegraphics[width=\textwidth]{ex-ucca.pdf}
+\end{frame}
+
+\frame{\titlepage}
+
+\frame{
+\frametitle{References}
+\bibliographystyle{acl_natbib}
+\bibliography{references}
+}
+
+
+\end{document}
