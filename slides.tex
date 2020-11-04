@@ -1,18 +1,38 @@
 \documentclass[svgnames]{beamer}[10]
-\usepackage{pgf}
 % \usepackage{babel}
-\usepackage[utf8]{inputenc}
 \usepackage{beamerthemesplit}
-\usepackage{epsfig, subfigure}
-\usepackage{graphicx} % Required for including images
+\usepackage{epsfig}
+\usepackage{subfigure}
 \usepackage{url}
 \usepackage{srcltx}
 \usepackage{hyperref}
-\usepackage{tikz}
-\usepackage{array}
 \usepackage{soul}
 \usepackage{natbib}
-\usepackage{pgfplots,pgfplotstable}
+\usepackage{apalike}
+\usepackage{graphicx}
+\usepackage{booktabs} % Top and bottom rules for table
+\usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
+\usepackage{wrapfig} % Allows wrapping text around tables and figures
+\usepackage{lipsum}
+\usepackage{adjustbox}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{pgf}
+\usepackage{pgfpages}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{tikz-dependency}
+
+\graphicspath{{figures/}} % Location of the graphics files
 
 \definecolor{lightblue}{rgb}{.90,.95,1}
 \sethlcolor{lightblue}
@@ -28,28 +48,9 @@
 \usetheme[numbers,compress,sidebarshades]{PaloAlto}
 \setbeamertemplate{footline}[frame number]
 
-\usepackage{pgfpages}
-\usepackage{apalike}
-\usepackage{graphicx} % Required for including images
-\graphicspath{{figures/}} % Location of the graphics files
-\usepackage{booktabs} % Top and bottom rules for table
-\usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
-\usepackage{wrapfig} % Allows wrapping text around tables and figures
-\usepackage{lipsum,adjustbox}
-\usepackage[absolute,overlay]{textpos}
-\usepackage{url}
-\usepackage{lmodern}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{color}
-\usepackage{array}
-\usepackage{multirow}
-\usepackage{multicol}
-\usepackage{rotating}
-\usepackage{tikz,pgfplots,pgfplotstable}
-\usepackage{tikz-dependency}
-\usetikzlibrary{arrows.meta,graphs,graphs.standard,graphdrawing,quotes,shapes}
+\usetikzlibrary{trees,arrows.meta,graphs,graphs.standard,graphdrawing,quotes,shapes}
 \usegdlibrary{layered,trees}
+\pgfplotsset{compat=1.17}
 \setbeamertemplate{sidebar left}{}
 \tikzset{
   invisible/.style={opacity=0},
@@ -101,17 +102,16 @@
 %\useoutertheme{infolines} 
 \title{Universal Conceptual Cognitive Annotation}
 \subtitle{Cross-lingual Semantic Representation for NLP with UCCA}
-\author{\bfseries
-  Omri Abend$^{*}$ \quad
-  Dotan Dvir$^{*}$ \\
-  Daniel Hershcovich$^{**}$ \quad
-  Jakob Prange$^{***}$ \\
-  Nathan Schneider$^{***}$}
-\institute{$^{*}$Hebrew University of Jerusalem 
-\\ $^{**}$University of Copenhagen
-\\ $^{***}$Georgetown University}
-\date{Tutorial at COLING 2020 \\
-December 12, 2020}
+\author{
+  \textbf{Omri Abend},
+  \textbf{Dotan Dvir} \\
+  Hebrew University of Jerusalem \\
+  \textbf{Daniel Hershcovich} \\
+  University of Copenhagen \\
+  \textbf{Jakob Prange},
+  \textbf{Nathan Schneider} \\
+  Georgetown University}
+\date{Tutorial at COLING 2020}
 
 \begin{document}
 \frame{\titlepage}
@@ -127,6 +127,7 @@ December 12, 2020}
 \section{Data}
 
 \section{Extensions}
+
 
 \begin{frame}
 \frametitle{Extensions}
@@ -235,26 +236,26 @@ predict its UCCA graph representation.}
 \begin{center}
     {\rmfamily\small They thought about taking a short break}
 \[\Downarrow\]
-\scalebox{.5}{
+\scalebox{.75}{
 \begin{tikzpicture}[level distance=16mm, sibling distance=28mm, ->, thick,
   level 2/.style={sibling distance=12mm},
   level 3/.style={sibling distance=18mm},
   edge from parent/.append style={nodes={font=\scriptsize}}]
   \tikzstyle{word} = [font=\rmfamily,color=black]
     \node (ROOT) [fill=blue, circle] {}
-      child {node (They) [word] {They} edge from parent node[left] {A}}
-      child {node [word] {thought} edge from parent node[left] {P}}
+      child {node (They) [word] {They} edge from parent node[midway, fill=white] {A}}
+      child {node [word] {thought} edge from parent node[midway, fill=white] {P}}
       child {node (abouttakingashortbreak) [fill=blue, circle] {}
       {
-        child {node [word] {about} edge from parent node[left] {R}}
+        child {node [word] {about} edge from parent node[midway, fill=white] {R}}
         child {node (takingabreak) [fill=blue, circle] {}
         {
-          child {node [word] {taking} edge from parent node[above] {F}}
-          child {node [word] {a} edge from parent node[right] {F}}
+          child {node [word] {taking} edge from parent node[midway, fill=white] {F}}
+          child {node [word] {a} edge from parent node[midway, fill=white] {F}}
           child {node [word] (short) {short} edge from parent[draw=none]}
-          child {node [word] {break} edge from parent node[right] {C}}
-        } edge from parent node[right] {P} }
-      } edge from parent node[right] {A} }
+          child {node [word] {break} edge from parent node[midway, fill=white] {C}}
+        } edge from parent node[midway, fill=white] {P} }
+      } edge from parent node[midway, fill=white] {A} }
       ;
     \draw[bend left,dashed,->] (abouttakingashortbreak) to node [auto] {\scriptsize A} (They);
     \draw[bend left,->] (abouttakingashortbreak) to node [auto] {\scriptsize D} (short);
@@ -281,19 +282,19 @@ Complex units are {\color{blue} non-terminal nodes}.
   edge from parent/.append style={nodes={font=\scriptsize}}]
   \tikzstyle{word} = [font=\rmfamily,color=black]
     \node (ROOT) [fill=blue, circle] {}
-      child {node (They) [word] {They} edge from parent node[left] {A}}
-      child {node [word] {thought} edge from parent node[left] {P}}
+      child {node (They) [word] {They} edge from parent node[midway, fill=white] {A}}
+      child {node [word] {thought} edge from parent node[midway, fill=white] {P}}
       child {node (abouttakingashortbreak) [fill=blue, circle] {}
       {
-        child {node [word] {about} edge from parent node[left] {R}}
+        child {node [word] {about} edge from parent node[midway, fill=white] {R}}
         child {node (takingabreak) [fill=blue, circle] {}
         {
-          child {node [word] {taking} edge from parent node[above] {F}}
-          child {node [word] {a} edge from parent node[right] {F}}
+          child {node [word] {taking} edge from parent node[midway, fill=white] {F}}
+          child {node [word] {a} edge from parent node[midway, fill=white] {F}}
           child {node [word] (short) {short} edge from parent[draw=none]}
-          child {node [word] {break} edge from parent node[right] {C}}
-        } edge from parent node[right] {P} }
-      } edge from parent node[right] {A} }
+          child {node [word] {break} edge from parent node[midway, fill=white] {C}}
+        } edge from parent node[midway, fill=white] {P} }
+      } edge from parent node[midway, fill=white] {A} }
       ;
     \draw[bend left,dashed,->,visible on=<-2>] (abouttakingashortbreak) to node [auto] {\scriptsize A} (They);
     \draw[bend left,dashed,->,orange,very thick,visible on=<3->] (abouttakingashortbreak) to node [auto] {\scriptsize A} (They);
@@ -331,7 +332,7 @@ Complex units are {\color{blue} non-terminal nodes}.
 \vfill
 
 \centering
-\scalebox{.8}{
+\scalebox{.7}{
 \begin{tikzpicture}[level distance=15mm, sibling distance=2cm, ->, thick,
     every node/.append style={font=\rmfamily},
     edge from parent path={(\tikzparentnode.center) -- (\tikzchildnode.north)}]
@@ -371,7 +372,7 @@ consisting of: stack, buffer and constructed graph.
 \pause
 \vfill
 Initial state:
-\scalebox{.9}{
+\scalebox{.8}{
 \begin{tikzpicture}[xscale=1.4,every node/.append style={font=\rmfamily,
                     anchor=west,text height=.6ex,text depth=0}, circle]
     \draw[xstep=1,ystep=.5,color=gray] (-.01,0) grid (1,.5);
@@ -406,7 +407,7 @@ Transitions:
 
 \vfill
 
-\scalebox{.9}{
+\scalebox{.8}{
 \begin{tikzpicture}[xscale=1.4,every node/.append style={font=\rmfamily, thick,
                     anchor=west,text height=.6ex,text depth=0}]
     \begin{scope}[style={font=\sffamily}]
@@ -477,7 +478,7 @@ Transitions:
 \end{tikzpicture}}
 \vfill
 \fbox{
-\begin{tikzpicture}[level distance=14mm, sibling distance=26mm, ->,
+\begin{tikzpicture}[level distance=14mm, sibling distance=21mm, ->,
     every node/.append style={font=\rmfamily},
     edge from parent/.append style={nodes={font=\scriptsize}},
     edge from parent path={(\tikzparentnode.center) -- (\tikzchildnode.north)}]
@@ -510,7 +511,7 @@ Learns to predict next transition based on current state.
 
 \centering
 \fbox{\scalebox{.65}{
-\begin{minipage}{.6\textwidth}
+\begin{minipage}{.65\textwidth}
 \begin{tikzpicture}[xscale=1.3,every node/.append style={font=\rmfamily}]
     \node[anchor=west,style={font=\sffamily}] at (-1,.25){stack};
     \draw[xstep=1,ystep=.5,color=gray] (-.01,0) grid (4,.5);
@@ -531,7 +532,7 @@ Learns to predict next transition based on current state.
 \end{tikzpicture}
 \end{minipage}
 \begin{minipage}{.4\textwidth}
-\scalebox{.65}{
+\scalebox{.6}{
 \begin{tikzpicture}[xscale=1.5,level distance=1cm, sibling distance=12mm, ->,
     every node/.append style={font=\rmfamily,
                     anchor=west,text height=.6ex,text depth=0},
@@ -595,6 +596,68 @@ Learns to predict next transition based on current state.
 }
 \end{frame}
 
+
+\def\exucca{
+\begin{tikzpicture}[level distance=2cm, sibling distance=2cm, ->, draw=Indigo, thick]
+    \node[font=\bf\sffamily\Huge,Indigo] at (-3,0) {UCCA};
+    \node (ROOT) [fill=Indigo, circle] {}
+      child {node (While) {While} edge from parent node[midway, fill=white] {L\;}}
+      child {node (playing) [fill=Indigo, circle] {}
+      {
+        child {node {playing} edge from parent node[midway, fill=white] {P}}
+      } edge from parent node[midway, fill=white] {H} }
+      child {node {,} edge from parent node[midway, fill=white] {U}}
+      child {node (learn) [fill=Indigo, circle] {}
+      {
+        child {node (children) {children} edge from parent node[midway, fill=white] {A}}
+        child {node {learn} edge from parent node[midway, fill=white] {P}}
+        child {node [fill=Indigo, circle] {}
+        {
+          child {node {about} edge from parent node[midway, fill=white] {R}}
+          child {node {themselves} edge from parent node[midway, fill=white] {C}}
+        } edge from parent node[midway, fill=white] {A} }
+      } edge from parent node[midway, fill=white] {H} }
+      ;
+    \draw[dashed,->] (playing) to node [auto] {A} (children);
+\end{tikzpicture}
+}
+
+\def\examr{
+\begin{tikzpicture}[thick]
+\node[font=\bf\sffamily\Huge,DarkGreen] at (0,1) {AMR};
+\graph[layered layout, sibling distance=4cm, layer distance=2cm, nodes={ellipse,draw=DarkGreen}, edges={nodes={sloped}, DarkGreen}]{
+a0[as={learn-01}];
+a1[as={child}];
+a5[as={during}];
+a6[as={play-01}];
+
+a0 ->  ["ARG0"' above] a1;
+a0 ->  ["time"' above] a5;
+a5 ->  ["op1"' above] a6;
+};
+\draw[->, above, DarkGreen] (a6) to node[sloped] {ARG0} (a1);
+\draw[->, above, DarkGreen] (a0) to[out=180,in=90] node[sloped] {ARG1} (a1);
+\end{tikzpicture}
+}
+
+\def\exdm{
+        \rmfamily
+        \scalebox{.7}{
+\begin{dependency}[theme=simple,edge style={-{Latex[length=2mm]}, color=DarkRed},
+            text only label, label style={above, color=DarkRed, font=\bf\ttfamily}, font=\small, thick]
+    \begin{deptext}[column sep=1em,ampersand replacement=\^]
+	While \^ playing \^ , \^ children \^ learn \^ about \^ themselves \\
+    \end{deptext}
+    \deproot{5}{top}
+    \depedge{1}{2}{ARG2}
+    \depedge{1}{5}{ARG1}
+    \depedge{5}{4}{ARG1}
+    \depedge{6}{5}{ARG1}
+    \depedge{6}{7}{ARG2}
+\end{dependency}
+    }
+}
+
 \begin{frame}
     \frametitle{Sharing for better generalization}
 
@@ -605,13 +668,17 @@ Learns to predict next transition based on current state.
     \begin{minipage}{.06\pagewidth}
     \scalebox{8}{\{}
     \end{minipage}
-    \begin{minipage}{.27\pagewidth}
+    \begin{minipage}{.23\pagewidth}
     \scalebox{.32}{\exucca}
     \end{minipage}
-    \begin{minipage}{.22\pagewidth}
-    \scalebox{.5}{\examr}
+    \begin{minipage}{.16\pagewidth}
+    \scalebox{.35}{\examr}
     \end{minipage}
     \begin{minipage}{.23\pagewidth}
+      \begin{tikzpicture}
+        \node[font=\bf\sffamily\small,DarkRed] {DM};
+      \end{tikzpicture}
+      
     \scalebox{.5}{\exdm}
     \end{minipage}
     \begin{minipage}{.06\pagewidth}
@@ -622,77 +689,6 @@ Learns to predict next transition based on current state.
     \pause
 
     Improved UCCA parsing in English, French and German.
-\end{frame}
-
-\begin{frame}
-\frametitle{Shared tasks: parsing competitions}
-\textit{SemEval 2019 Task 1: Cross-lingual Semantic Parsing with UCCA}
-
-\begin{minipage}{.6\textwidth}
-\begin{itemize}
-\item 3 languages.
-\item 8 teams from 6 countries.
-\end{itemize}
-\end{minipage}
-\hfill
-\begin{minipage}{.1\textwidth}
-\includegraphics[width=\textwidth]{type_writer2.png}
-\end{minipage}
-
-\pause
-\vfill
-
-\textit{MRP 2019: Cross-Framework Meaning Representation Parsing}
-
-\begin{minipage}{.6\textwidth}
-\begin{itemize}
-\item DM, PSD, EDS, UCCA and AMR parsing in English.
-\item 18 teams from 8 countries participated.
-\end{itemize}
-\end{minipage}
-\hfill
-\begin{minipage}{.1\textwidth}
-\includegraphics[width=\textwidth]{logo.png}
-\end{minipage}
-
-\pause
-\vfill
-
-\textit{MRP 2020: Cross-Framework and Cross-Lingual Meaning Representation Parsing}
-
-\begin{minipage}{.6\textwidth}
-\begin{itemize}
-\item EDS, PTG, UCCA, AMR and DRG parsing in English, Czech, German and Chinese.
-\item 6 teams participated.
-\end{itemize}
-\end{minipage}
-\hfill
-\begin{minipage}{.1\textwidth}
-\includegraphics[width=\textwidth]{logo.png}
-\end{minipage}
-\end{frame}
-
-
-\begin{frame}
-
-\frametitle{SemEval 2019 Task 1: Cross-lingual Semantic Parsing with UCCA}
-
-        \begin{itemize}
-            \item 
-                English $\{$in-domain/out-of-domain$\} \times 
-                \{$open/closed$\}$
-            \item
-                German in-domain $\{$open/closed$\}$
-            \item
-                French \textit{low-resource} (only 15 training sentences)
-        \end{itemize}
-
-
-\vfill
-\begin{center}
-  \begin{minipage}{.3\textwidth}\includegraphics[width=\textwidth]{wikipedia.png}\end{minipage}
-  \begin{minipage}{.3\textwidth}\includegraphics[width=\textwidth]{squid.jpg}\end{minipage}
-\end{center}
 \end{frame}
 
 
@@ -708,7 +704,7 @@ SDP\\
 \end{minipage}
 \begin{minipage}{.44\textwidth}
   \centering
-  \scalebox{.6}{
+  \scalebox{.55}{
   \begin{tikzpicture}[->,
       every node/.append style={sloped,anchor=south,auto=false,font=\tiny},
       level 1/.style={level distance=14mm,sibling distance=26mm},
@@ -755,7 +751,7 @@ SDP\\
     }
     
   \vspace{5mm}
-  \scalebox{.6}{
+  \scalebox{.55}{
     \begin{dependency}[text only label, label style={above}, font=\small]
     \begin{deptext}[column sep=.8em,ampersand replacement=\^]
     After \^ graduation \^ , \^ John \^ moved \^ to \^ Paris \\
@@ -856,7 +852,7 @@ SDP\\
   \end{tikzpicture}}
 
   \vspace{5mm}
-  \scalebox{.6}{
+  \scalebox{.55}{
   \begin{tikzpicture}[level distance=15mm, ->,
       every node/.append style={sloped,anchor=south,auto=false,font=\scriptsize},
       level 1/.style={sibling distance=16mm},
@@ -896,7 +892,7 @@ SDP\\
 
 \begin{frame}
 \frametitle{Evaluation}
-\begin{adjustbox}{frame,scale=.75,center}
+\begin{adjustbox}{frame,scale=.55,center}
     \begin{tikzpicture}[level distance=12mm, sibling distance=19mm, ->,
         every circle node/.append style={fill=black},
         edge from parent/.append style={nodes={font=\scriptsize}},
@@ -904,39 +900,39 @@ SDP\\
       \tikzstyle{word} = [font=\rmfamily,color=black]
       \node at (0,.7) {True (human-annotated) graph};
       \node (ROOT) at (0,0) [circle] {}
-        child {node (After) [word] {After} edge from parent node[left] {L}}
+        child {node (After) [word] {After} edge from parent node[midway, fill=white] {L}}
         child {node (graduation) [circle] {}
         {
-          child {node [word] {graduation} edge from parent node[left] {P}}
-        } edge from parent node[left] {H} }
-        child {node [word] {,} edge from parent node[right] {U}}
+          child {node [word] {graduation} edge from parent node[midway, fill=white] {P}}
+        } edge from parent node[midway, fill=white] {H} }
+        child {node [word] {,} edge from parent node[midway, fill=white] {U}}
         child {node (moved) [circle] {}
         {
-          child {node (John) [word] {John} edge from parent node[left] {A}}
-          child {node [word] {moved} edge from parent node[left] {P}}
+          child {node (John) [word] {John} edge from parent node[midway, fill=white] {A}}
+          child {node [word] {moved} edge from parent node[midway, fill=white] {P}}
           child {node [circle] {}
           {
-            child {node [word] {to} edge from parent node[left] {R}}
-            child {node [word] {Paris} edge from parent node[right] {C}}
-          } edge from parent node[right] {A} }
-        } edge from parent node[right] {H} }
+            child {node [word] {to} edge from parent node[midway, fill=white] {R}}
+            child {node [word] {Paris} edge from parent node[midway, fill=white] {C}}
+          } edge from parent node[midway, fill=white] {A} }
+        } edge from parent node[midway, fill=white] {H} }
         ;
       \draw[dashed,->] (graduation) to node [auto] {\scriptsize A} (John);
       \node at (10.3,.7) {Automatically predicted graph for the same text};
       \node (ROOT_) at (9,0) [circle] {}
-        child {node (After_) [word] {After} edge from parent node[left] {L}}
+        child {node (After_) [word] {After} edge from parent node[midway, fill=white] {L}}
         child {node (graduation_) [circle] {}
         {
-          child[alt=<2>{red}{}] {node [word] {graduation} edge from parent node[left] {S}}
-        } edge from parent node[left] {H} }
-        child {node [word] {,} edge from parent node[right] {U}}
+          child[alt=<2>{red}{}] {node [word] {graduation} edge from parent node[midway, fill=white] {S}}
+        } edge from parent node[midway, fill=white] {H} }
+        child {node [word] {,} edge from parent node[midway, fill=white] {U}}
         child {node (moved) [circle,xshift=3mm,yshift=-7mm] {}
         {
-          child {node (John_) [word] {John} edge from parent node[left] {A}}
-          child {node [word] {moved} edge from parent node[left] {P}}
-          child[alt=<2>{red}{}] {node [word] {to} edge from parent node[left] {F}}
-          child[alt=<2>{red}{}] {node (Paris_) [word] {Paris} edge from parent node[right] {A}}
-        } edge from parent node[right] {H} }
+          child {node (John_) [word] {John} edge from parent node[midway, fill=white] {A}}
+          child {node [word] {moved} edge from parent node[midway, fill=white] {P}}
+          child[alt=<2>{red}{}] {node [word] {to} edge from parent node[midway, fill=white] {F}}
+          child[alt=<2>{red}{}] {node (Paris_) [word] {Paris} edge from parent node[midway, fill=white] {A}}
+        } edge from parent node[midway, fill=white] {H} }
         ;
       \draw[dashed,->] (graduation_) to node [auto] {\scriptsize A} (John_);
       \draw[bend left,dashed,->,alt=<2>{red}{}] (graduation_) to[in=90] node [auto] {\scriptsize A} (Paris_);
@@ -968,8 +964,67 @@ SDP\\
 \end{frame}
 
 \begin{frame}
-\frametitle{Participating Systems}
- 8 groups in total:
+\frametitle{Shared tasks: parsing competitions}
+\textit{SemEval 2019 Task 1: Cross-lingual Semantic Parsing}
+
+\begin{minipage}{.8\textwidth}
+\begin{itemize}
+\item UCCA parsing in English, French and German.
+\item 8 teams participated.
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{.1\textwidth}
+\includegraphics[width=\textwidth]{type_writer2.png}
+\end{minipage}
+
+\pause
+\vfill
+
+\textit{MRP 2019: Cross-Framework Meaning Representation Parsing}
+
+\begin{itemize}
+\item DM, PSD, EDS, UCCA and AMR parsing in English.
+\item 18 teams participated.
+\end{itemize}
+
+\pause
+\vfill
+
+\textit{MRP 2020: Cross-Framework and Cross-Lingual MRP}
+
+\begin{itemize}
+\item EDS, PTG, UCCA, AMR and DRG parsing in English, Czech, German and Chinese.
+\item 8 teams participated.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+
+\frametitle{SemEval 2019 Task 1: Cross-lingual Semantic Parsing with UCCA}
+
+        \begin{itemize}
+            \item 
+                English $\{$in-domain/out-of-domain$\} \times 
+                \{$open/closed$\}$
+            \item
+                German in-domain $\{$open/closed$\}$
+            \item
+                French \textit{low-resource} (only 15 training sentences)
+        \end{itemize}
+
+
+\vfill
+\begin{center}
+  \begin{minipage}{.3\textwidth}\includegraphics[width=\textwidth]{wikipedia.png}\end{minipage}
+  \begin{minipage}{.3\textwidth}\includegraphics[width=\textwidth]{squid.jpg}\end{minipage}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{SemEval 2019 Task 1: Cross-lingual Semantic Parsing with UCCA}
+ 8 teams in total:
  \begin{itemize}
  \item
  {\it MaskParse@Deski\~{n}}  {\small Orange Labs, Aix-Marseille University}
@@ -988,25 +1043,6 @@ SDP\\
  \item
 {\it XLangMo} {\small  Zhejiang University}
 \end{itemize}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Leaderboard}
-\small
-\renewcommand*{\arraystretch}{2.1}
-\setlength{\tabcolsep}{2pt}
-\begin{tabular}{l|lc|lc|lc|lc}
-Track&1st place&&2nd place&&3rd place&&baseline\\
-\hline
-English-Wiki closed&HLT@SUDA&0.774&baseline&0.728&Davis&0.722&0.728\\
-English-Wiki open&HLT@SUDA&0.805&CUNY-PekingU&0.800&T\"{u}Pa&0.735&0.735\\
-English-20K closed&HLT@SUDA&0.727&baseline&0.672&CUNY-PekingU&0.669&0.672\\
-English-20K open&HLT@SUDA&0.767&CUNY-PekingU&0.739&T\"{u}Pa&0.709&0.684\\
-German-20K closed&HLT@SUDA&0.832&CUNY-PekingU&0.797&baseline&0.731&0.731\\
-German-20K open&HLT@SUDA&0.849&CUNY-PekingU&0.841&baseline&0.791&0.791\\
-French-20K open&CUNY-PekingU&0.796&HLT@SUDA&0.752&XLangMo&0.656&0.487
-\end{tabular}
 \end{frame}
 
 
@@ -1020,17 +1056,12 @@ French-20K open&CUNY-PekingU&0.796&HLT@SUDA&0.752&XLangMo&0.656&0.487
 
 
 \begin{frame}
-\frametitle{Main Findings}
+\frametitle{SemEval 2019 Task 1: Cross-lingual Semantic Parsing with UCCA}
 
-\begin{itemize}
-    \item
-        HLT@SUDA won 6/7 tracks: \\
+        HLT@SUDA: \\
         Neural constituency parser + multi-task + BERT \\
         French: trained on all languages, with language embedding
-    \pause\item
-        CUNY-PekingU won the French (open) track: \\
-        TUPA ensemble + synthetic data by machine translation
-\end{itemize}
+        
         \pause\vfill
         Surprisingly, results in French were close to English and German
     \begin{itemize}
@@ -1047,23 +1078,23 @@ French-20K open&CUNY-PekingU&0.796&HLT@SUDA&0.752&XLangMo&0.656&0.487
 \begin{frame}
 \frametitle{What can meaning representation do for NLP?}
  \begin{itemize}
- \item Probing for linguistic knowledge
- \item Querying knowledge bases
- \item \textbf{Underlying explicit structure}
+ \item Controlled evaluation by explicit criteria
+ \item Inductive bias to facilitate learning
+ \item Explainable models by design
  \end{itemize}
 \end{frame}
 
 
 \begin{frame}
-\frametitle{Applications}
+\frametitle{UCCA Applications}
 \begin{itemize}
   \item Semantics-based evaluation of
   \begin{itemize}
-    \item Machine translation \cite{birch2016hume}
-    \item Text simplification \cite{sulem2018semantic}
-    \item Grammatical error correction \cite{choshen2018reference}
+    \item Machine translation \citep{birch2016hume,xu-etal-2020-incorporate}
+    \item Text simplification \citep{sulem2018samsa}
+    \item Grammatical error correction \citep{choshen2018usim}
   \end{itemize}
-  \item Sentence splitting for text simplification \cite{sulem2018simple}.
+  \item Sentence splitting for text simplification \citep{sulem2018simple,sulem-etal-2020-semantic}.
 \end{itemize}
 
     \begin{minipage}{0.47\textwidth}
