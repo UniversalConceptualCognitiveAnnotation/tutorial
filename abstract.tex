@@ -145,32 +145,31 @@ Category abbreviations: \ucca{\color{black}H} = parallel scene, \ucca{\color{Lco
 \section{Relevance}\label{sec:relevance}
 
 UCCA resources and applications are valuable for cross-lingual NLP:
-like Universal Dependencies \cite[UD;][]{11234/1-2988},
+like Universal Dependencies \citep{nivre-etal-2020-universal},
 UCCA's category set can in principle be applied to a wide variety of languages.
 It is also cross-linguistically stable, and reflects a level of semantic structure that is usually preserved in translations \cite{sulem2015conceptual}.
-UCCA has been applied in NLP to text simplification \citep{sulem2018simple},
-and text-to-text generation evaluation \citep{birch2016hume,marecek-etal-2017-cuni,choshen2018usim,sulem2018samsa,alvamanchego-etal:2019:easse}.
+UCCA has been applied in NLP to text simplification \citep{sulem-etal-2018-simple,sulem-etal-2020-semantic},
+and text-to-text generation evaluation \citep{birch-etal-2016-hume,marecek-etal-2017-cuni,choshen-abend-2018-automatic,sulem-etal-2018-simple,alvamanchego-etal:2019:easse,xu2020incorporate}.
 The tutorial will describe the guidelines and rationale behind UCCA,
 helping potential application designers understand what abstractions
 it makes.
 
 Significant effort has been devoted to building UCCA parsers
-\cite{hershcovich2017a,jiang-19,zhang2019broad},
+\cite[][among others]{hershcovich2017a,jiang-19,zhang2019broad},
 including a SemEval~2019 shared task
 on cross-lingual UCCA parsing \citep{hershcovich2019shared},
 which had 8 participating teams,
 as well as CoNLL~2019 and CoNLL~2020 shared tasks on cross-framework and cross-lingual meaning representation
 parsing \cite{Oep:Abe:Haj:19,Oep:Abe:Abz:20},
-where 12 and 4 teams, respectively submitted parsed UCCA graphs.
+where 12 and 4 teams, respectively, submitted parsed UCCA graphs.
 This tutorial will allow researchers interested in UCCA parsing, and more generally graph parsing, deepen their understanding of the framework, 
 and what properties make it unique.
 The tutorial will include a brief survey of the various approaches taken by existing parsers, and prepare attendees to work on UCCA parsing themselves.
 
 Furthermore, UCCA parsing has been shown to benefit from multi-task learning
 \cite{caruana1998multitask}
-with other meaning representations \cite{hershcovich2018multitask}, and
-preliminary results from the CoNLL 2019 shared task \cite{Oep:Abe:Haj:19}
-show that it is also useful as an auxiliary task in itself.
+with other meaning representations \cite{hershcovich2018multitask}, although results from the CoNLL~2019 and CoNLL~2020 shared tasks \cite{Oep:Abe:Haj:19,Oep:Abe:Abz:20}
+show that multi-task meaning representation parsing is difficult.
 The tutorial will compare and contrast UCCA and other meaning representations,
 and will thereby inform participants of the potential advantages and difficulties
 in employing multi-task learning across semantic schemes.
@@ -204,28 +203,27 @@ The planned division of time is as follows:
     \item \textbf{Data and annotation (10m).}
     Overview of annotated data (see \S\ref{sec:introduction})
     and the annotation process and software \cite{abend2017uccaapp}.
-    \begin{center}
-        COFFEE BREAK
-    \end{center}
     \item \textbf{Extensions to UCCA and integration with other schemes (15m).}
-    Semantic roles \cite{prange2019made} and
-    coreference \cite{prange2019semantically}.
+    Semantic roles \cite{prange2019made},
+    coreference \cite{prange2019semantically}, and
+    fine-grained implicit arguments \cite{cui-hershcovich-2020-refining}.
     \item \textbf{Relation to other representations (15m).}
     Comparison to other meaning representations
-    \cite{abend2017state,koller2019graph}
+    \cite{abend2017state,koller2019graph,hershcovich-et-al-2020-comparison}
     and to UD \cite{hershcovich2019content}.
     \item \textbf{Parsing (25m).}
-    TUPA \cite{hershcovich2017a,hershcovich2018multitask},
+    TUPA \cite{hershcovich2017a,hershcovich2018multitask,Her:Arv:19,Arv:Cui:Her:20},
     SemEval~2019 Task~1 \cite{hershcovich2019shared,jiang-19},
-    CoNLL~2019 Shared Task \cite{Oep:Abe:Haj:19}, and
+    CoNLL~2019 and CoNLL~2020 Shared Tasks \cite{Oep:Abe:Haj:19,Oep:Abe:Abz:20}, and
     more recent parsers \cite{zhang2019broad}.
     \item \textbf{Monolingual tasks and evaluation (20m).}
-    Sentence simplification \cite{sulem2018simple},
-    evaluation of sentence simplification \cite{sulem2018samsa,alvamanchego-etal:2019:easse}
-    and grammatical error correction \cite{choshen2018usim}.
+    Sentence simplification \cite{sulem-etal-2018-simple},
+    evaluation of sentence simplification \cite{sulem-etal-2018-semantic,alvamanchego-etal:2019:easse}
+    and grammatical error correction \cite{choshen-abend-2018-automatic}.
     \item \textbf{Cross-linguistic studies and applications (15m).}
     Analysis of cross-linguistic stability \cite{sulem2015conceptual},
-    machine translation evaluation \cite{birch2016hume,marecek-etal-2017-cuni}.
+    machine translation evaluation \cite{birch-etal-2016-hume,marecek-etal-2017-cuni,xu2020incorporate}
+    and simplification for machine translation \cite{sulem-etal-2020-semantic}.
 \end{enumerate}
 
 \subsection{Prerequisites}\label{sec:prerequisites}
@@ -259,7 +257,7 @@ materials lie:
     using a hierarchical alignment,
     and discuss bridging them with cross-lingual semantic representations.
     \item \Citet{croft2017linguistic} list typologically-informed design 
-    criteria for Universal Dependencies \cite{11234/1-2988},
+    criteria for Universal Dependencies \citep{nivre-etal-2020-universal},
     which are also relevant for other structural representations in NLP.
     % \item \Citet{hershcovich2019shared} summarize the SemEval~2019 shared task on cross-lingual UCCA parsing.
     % \item \Citet{jiang-19} describe the HLT@SUDA parser, winner of the SemEval~2019 shared task based on a constituency tree parser.
@@ -292,8 +290,7 @@ is a Tenure-Track Assistant Professor at the University of Copenhagen, Denmark.
 Daniel pioneered the work on UCCA parsing, and
 is interested in semantic parsing and meaning representations.
 Daniel develops and maintains the UCCA toolkit Python codebase,\footnote{\url{https://github.com/danielhers/ucca}}
-has teaching experience in an NLP course
-at the Hebrew University of Jerusalem,
+has teaching experience in NLP and ML courses,
 and publishes in NLP conferences.
 
 \textbf{Jakob Prange} (\url{https://prange.jakob.georgetown.domains})
