@@ -1,0 +1,302 @@
+% -*- coding: utf-8; -*-
+
+%
+% in defining strings, we make use of the following prefixes:
+%
+% + S: --- general strings
+% + O: --- organizations 
+% + C: --- conferences
+% + L: --- addresses
+% + E: --- editors
+% + J: --- journals
+% + P: --- publishers
+%
+% for some conferences, there is variation in the book titles, e.g. for shared
+% tasks, student research workshops, or software demonstration sessions.  use
+% at least a few common suffixes, even though the exact title may vary from
+% year to year:
+%
+% + :S --- student research workshop
+% + :T --- short papers
+% + :P --- poster session (where not part of the main proceedings volume)
+% + :U --- shared task
+% + :D --- software demonstration (aka interactive presentation)
+%
+
+@preamble{"\providecommand{\fromto}[2]{#1$\,$--$\,$#2}"}
+@preamble{"\providecommand{\pages}[3]{#2$\,$--$\,$#3}"}
+@preamble{"\providecommand\Beek[1]{\mbox{#1}}"}
+@preamble{"\providecommand\Noord[1]{\mbox{#1}}"}
+@preamble{"\providecommand\Lohuizen[1]{\mbox{#1}}"}
+
+@string{S:PROCEEDINGS = {Proceedings}}
+
+@string{C:CONLL = {{C}onference on {C}omputational {N}atural {L}anguage {L}earning}}
+
+@string{CONLL:19 = S:PROCEEDINGS # { of the 23nd } # C:CONLL}
+@string{CONLL:20 = S:PROCEEDINGS # { of the 24th } # C:CONLL}
+@string{CONLL:19:U = S:PROCEEDINGS # { of the Shared Task on
+                     Cross-Framework Meaning Representation Parsing
+                     at the 2019 } # C:CONLL}
+@string{CONLL:20:U = S:PROCEEDINGS # { of the {CoNLL} 2020 {S}hared {T}ask:
+                     {C}ross-{F}ramework {M}eaning {R}epresentation {P}arsing}}
+@string{L:CONLL:19 = {Hong Kong, China}}
+@string{L:CONLL:20 = {Online}}
+
+@inproceedings{Oep:Abe:Abz:20,
+  author = {Oepen, Stephan and Abend, Omri and Abzianidze, Lasha and
+            Bos, Johan and Haji\v{c}, Jan and Hershcovich, Daniel and
+            Li, Bin and O'Gorman, Tim and Xue, Nianwen and Zeman, Daniel},
+  title = {{MRP}~2020: {T}he {S}econd {S}hared {T}ask on
+           {C}ross-Framework and {C}ross-{L}ingual
+           {M}eaning {R}epresentation {P}arsing},
+  booktitle = CONLL:20:U,
+  address = L:CONLL:20,
+  pages = {\pages{--}{1}{22}},
+  year = 2020
+}
+
+@inproceedings{Abz:Bos:Oep:20,
+  author = {Abzianidze, Lasha and Bos, Johan and Oepen, Stephan},
+  title = {{DRS} at {MRP}~2020:
+           {D}ressing Up {D}iscourse {R}epresentation {S}tructures as Graphs},
+  booktitle = CONLL:20:U,
+  address = L:CONLL:20,
+  pages = {\pages{--}{23}{32}},
+  year = 2020
+}
+
+@inproceedings{Zem:Haj:20,
+  author = {Zeman, Daniel and Haji\v{c}, Jan},
+  title = {{FGD} at {MRP}~2020: {P}rague {T}ectogrammatical {G}raphs},
+  booktitle = CONLL:20:U,
+  address = L:CONLL:20,
+  pages = {\pages{--}{33}{39}},
+  year = 2020
+}
+
+@inproceedings{Oza:Mor:Kor:20,
+  author = {Ozaki, Hiroaki and Morio, Gaku and Koreeda, Yuta and
+            Morishita, Terufumi and Miyoshi, Toshinori},
+  title = {{H}itachi at {MRP}~2020: {T}ext-to-Graph-Notation Transducer},
+  booktitle = CONLL:20:U,
+  address = L:CONLL:20,
+  pages = {\pages{--}{40}{52}},
+  year = 2020
+}
+
+@inproceedings{Sam:Str:20,
+  author = {Samuel, David and Straka, Milan},
+  title = {{{\'U}FAL} at {MRP}~2020:
+           {P}ermutation-Invariant Semantic Parsing in {PERIN}},
+  booktitle = CONLL:20:U,
+  address = L:CONLL:20,
+  pages = {\pages{--}{53}{64}},
+  year = 2020
+}
+
+@inproceedings{Dou:Fen:Ji:20,
+  author = {Dou, Longxu and Feng, Yunlong and Ji, Yuqiu and
+            Che, Wanxiang and Liu, Ting},
+  title = {{HIT-SCIR} at {MRP}~2020:
+           {T}ransition-Based Parser and Iterative Inference Parser},
+  booktitle = CONLL:20:U,
+  address = L:CONLL:20,
+  pages = {\pages{--}{65}{72}},
+  year = 2020
+}
+
+@inproceedings{Arv:Cui:Her:20,
+  author = {Arviv, Ofir and Cui, Ruixiang and Hershcovich, Daniel},
+  title = {{HUJI-KU} at {MRP}~2020: {T}wo Transition-based Neural Parsers},
+  booktitle = CONLL:20:U,
+  address = L:CONLL:20,
+  pages = {\pages{--}{73}{82}},
+  year = 2020
+}
+
+@inproceedings{Na:Min:20,
+  author = {Na, Seung-Hoon and Min, Jinwoo},
+  title = {{JBNU} at {MRP}~2020:
+           {AMR} Parsing using a Joint State Model for Graph-Sequence Iterative Inference},
+  booktitle = CONLL:20:U,
+  address = L:CONLL:20,
+  pages = {\pages{--}{83}{87}},
+  year = 2020
+}
+
+@inproceedings{Oep:Abe:Haj:19,
+  author = {Oepen, Stephan and Abend, Omri and Haji\v{c}, Jan and
+            Hershcovich, Daniel and Kuhlmann, Marco and O'Gorman, Tim and
+            Xue, Nianwen and
+            Chun, Jayeol and Straka, Milan and Ure\v{s}ov{\'a}, Zde\v{n}ka},
+  title = {{MRP}~2019: {C}ross-Framework {M}eaning {R}epresentation {P}arsing},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{1}{27}},
+  year = 2019
+}
+
+@inproceedings{Her:Arv:19,
+  author = {Hershcovich, Daniel and Arviv, Ofir},
+  title = {{TUPA} at {MRP}~2019: {A} Multi-Task Baseline System},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{28}{39}},
+  year = 2019
+}
+
+@inproceedings{Oep:Fli:19,
+  author = {Oepen, Stephan and Flickinger, Dan},
+  title = {The {ERG} at {MRP}~2019: {R}adically Compositional Semantic Dependencies},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{40}{44}},
+  year = 2019
+}
+
+@inproceedings{Li:Zha:Zha:19,
+  author = {Li, Zuchao and Zhao, Hai and Zhang, Zhuosheng and Wang, Rui
+            and Utiyama, Masao and Sumita, Eiichiro},
+  title = {{SJTU--NICT} at {MRP}~2019:
+           {M}ulti-Task Learning for End-to-End Uniform Semantic Graph Parsing},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{45}{54}},
+  year = 2019
+}
+
+@inproceedings{Wan:Liu:Jia:19,
+  author = {Wang, Xinyu and Liu, Yixian and Jia, Zixia
+            and Jiang, Chengyue and Tu, Kewei},
+  title = {{ShanghaiTech} at {MRP}~2019:
+           {S}equence-to-Graph Transduction with Second-Order Edge Inference
+           for Cross-Framework Meaning Representation Parsing},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{55}{65}},
+  year = 2019
+}
+
+@inproceedings{Don:Fow:Gro:19,
+  author = {Donatelli, Lucia and Fowlie, Meaghan and Groschwitz, Jonas
+            and Koller, Alexander and Lindemann, Matthias
+            and Mina, Mario and Weißenhorn, Pia},
+  title = {Saarland at {MRP}~2019:
+           {C}ompositional Parsing across All Graphbanks},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{66}{75}},
+  year = 2019
+}
+
+@inproceedings{Che:Dou:Xu:19,
+  author = {Che, Wanxiang and Dou, Longxu and Xu, Yang
+            and Wang, Yuxuan and Liu, Yijia and Liu, Ting},
+  title = {{HIT-SCIR} at {MRP}~2019:
+           {A} Unified Pipeline for Meaning Representation Parsing
+           via Efficient Training and Effective Encoding},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{76}{85}},
+  year = 2019
+}
+
+@inproceedings{Bai:Zha:19,
+  author = {Bai, Hongxiao and Zhao, Hai},
+  title = {{SJTU} at {MRP}~2019:
+           {A} Transition-Based Multi-Task Parser for
+           Cross-Framework Meaning Representation Parsing}, 
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{86}{94}},
+  year = 2019
+}
+
+@inproceedings{Na:Min:Par:19,
+  author = {Na, Seung-Hoon and Min, Jinwoo and Park, Kwanghyeon
+            and Shin, Jong-Hun and Kim, Young-Kil},
+  title = {JBNU at {MRP}~2019:
+           {M}ulti-Level Biaffine Attention for Semantic Dependency Parsing},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{95}{103}},
+  year = 2019
+}
+
+@inproceedings{Lai:Lo:Leu:19,
+  author = {Lai, Sunny and Lo, Chun Hei and Leung, Kwong Sak and Leung, Yee},
+  title = {{CUHK} at {MRP}~2019:
+            {T}ransition-Based Parser with Cross-Framework Variable-Arity Resolve Action},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{104}{113}},
+  year = 2019
+}
+
+@inproceedings{Kor:Mor:Mor:19,
+  author = {Koreeda, Yuta and Morio, Gaku and Morishita, Terufumi
+            and Ozaki, Hiroaki and Yanai, Kohsuke},
+  title = {Hitachi at {MRP}~2019:
+           {U}nified Encoder-to-Biaffine Network for
+           Cross-Framework Meaning Representation Parsing},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{114}{126}},
+  year = 2019
+}
+
+@inproceedings{Str:Str:19,
+  author = {Straka, Milan and Strakov{\'a}, Jana},
+  title = {{{\'U}FAL MRPipe} at {MRP}~2019:
+           {UDPipe} Goes Semantic in the {M}eaning {R}epresentation {P}arsing
+           Shared Task},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{127}{137}},
+  year = 2019
+}
+
+@inproceedings{Cao:Zha:Sri:19,
+  author = {Cao, Jie and Zhang, Yi and Youssef, Adel and Srikumar, Vivek},
+  title = {Amazon at {MRP}~2019:
+           {P}arsing Meaning Representations
+           with Lexical And Phrasal Anchoring},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{138}{148}},
+  year = 2019
+}
+
+@inproceedings{Zha:Jia:Xia:19,
+  author = {Zhang, Yue and Jiang, Wei and Xia, Qingrong and Cao, Junjie
+            and Wang, Rui and Li, Zhenghua and Zhang, Min},
+  title = {{SUDA}--{A}libaba at {MRP}~2019:
+           {G}raph-Based Models with {BERT}},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{149}{157}},
+  year = 2019
+}
+
+@inproceedings{Dro:Kut:Med:19,
+  author = {Droganova, Kira and Kutuzov, Andrey and Mediankin, Nikita
+            and Zeman, Daniel},
+  title = {{{\'U}FAL}--{O}slo at {MRP}~2019:
+           {G}arage Sale Semantic Parsing},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{158}{165}},
+  year = 2019
+}
+
+@inproceedings{Che:Ye:Sun:19,
+  author = {Chen, Yufei and Ye, Yajie and Sun, Weiwei},
+  title = {Peking at {MRP}~2019:
+           {F}actorization- and Composition-Based Parsing
+           for {E}lementary {D}ependency {S}tructures},
+  booktitle = CONLL:19:U,
+  address = L:CONLL:19,
+  pages = {\pages{--}{166}{176}},
+  year = 2019
+}

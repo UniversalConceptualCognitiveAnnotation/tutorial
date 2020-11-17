@@ -39,6 +39,7 @@
 % smaller than 5cm (the original size); we will check this
 % in the camera-ready version and ask you to change it back.
 
+\graphicspath{{figures/}} % Location of the graphics files
 \pgfplotsset{compat=1.15}
 \include{aliases}
 %\def\arraystretch{1.1}
@@ -71,7 +72,7 @@ Cross-lingual Semantic Representation for NLP with UCCA \\
 \maketitle
 
 \begin{abstract}
-This is an introductory tutorial to UCCA (Universal Conceptual Cognitive Annotation), a cross-linguistically applicable framework for semantic representation, with corpora annotated in English, German and French, and ongoing annotation in Russian and Hebrew. UCCA builds on extensive typological work and supports rapid annotation. The tutorial will provide a detailed introduction to the UCCA annotation guidelines, design philosophy and the available resources; and a comparison to other meaning representations. It will also survey the existing parsing work, including the findings of two recent shared tasks, in SemEval and CoNLL, that addressed UCCA parsing. Finally, the tutorial will present recent applications and extensions to the scheme, demonstrating its value for natural language processing in a range of languages and domains.
+This is an introductory tutorial to UCCA (Universal Conceptual Cognitive Annotation), a cross-linguistically applicable framework for semantic representation, with corpora annotated in English, German and French, and ongoing annotation in Russian and Hebrew. UCCA builds on extensive typological work and supports rapid annotation. The tutorial will provide a detailed introduction to the UCCA annotation guidelines, design philosophy and the available resources; and a comparison to other meaning representations. It will also survey the existing parsing work, including the findings of three recent shared tasks, in SemEval and CoNLL, that addressed UCCA parsing. Finally, the tutorial will present recent applications and extensions to the scheme, demonstrating its value for natural language processing in a range of languages and domains.
 \end{abstract}
 
 
@@ -158,9 +159,9 @@ Significant effort has been devoted to building UCCA parsers
 including a SemEval~2019 shared task
 on cross-lingual UCCA parsing \citep{hershcovich2019shared},
 which had 8 participating teams,
-and a CoNLL~2019 shared task on cross-framework meaning representation
-parsing \cite{Oep:Abe:Haj:19},
-where 12 teams submitted parsed UCCA graphs.
+as well as CoNLL~2019 and CoNLL~2020 shared tasks on cross-framework and cross-lingual meaning representation
+parsing \cite{Oep:Abe:Haj:19,Oep:Abe:Abz:20},
+where 12 and 4 teams, respectively submitted parsed UCCA graphs.
 This tutorial will allow researchers interested in UCCA parsing, and more generally graph parsing, deepen their understanding of the framework, 
 and what properties make it unique.
 The tutorial will include a brief survey of the various approaches taken by existing parsers, and prepare attendees to work on UCCA parsing themselves.
