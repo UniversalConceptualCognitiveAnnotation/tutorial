@@ -3,20 +3,20 @@
 % File abstract.tex
 
 
-\documentclass[11pt,a4paper,table]{article}
+\documentclass[11pt,table]{article}
 \usepackage{authblk}
-\usepackage[hyperref]{acl2019}
+\usepackage{coling2020}
+\usepackage{hyperref}
 \usepackage{times}
 \usepackage{latexsym}
 \usepackage{url}
-\usepackage{xr}
 \usepackage[T1]{fontenc}
 % \usepackage[scaled=.8]{beramono}
 % \usepackage[scaled=.95]{helvet}
 \usepackage{amsmath}
 \usepackage{color,soul}
 \usepackage{subcaption}
-\usepackage[font=10pt,labelfont=bf,skip=5pt]{caption}
+\usepackage{caption}
 \usepackage[shortlabels]{enumitem} % customizable lists
 \usepackage{multirow}
 \usepackage{tikz}
@@ -31,7 +31,7 @@
 \usepackage{nameref}
 \usepackage{cleveref}
 
-\aclfinalcopy % Uncomment this line for the final submission
+\colingfinalcopy % Uncomment this line for the final submission
 
 %\setlength\titlebox{5cm}
 % You can expand the titlebox if you need extra space
@@ -52,7 +52,7 @@ Cross-lingual Semantic Representation for NLP with UCCA}
 \author[*]{\textbf{Omri Abend}}
 \author[*]{\textbf{Dotan Dvir}}
 \author[**]{\textbf{Daniel Hershcovich}}
-\author[***]{\textbf{Jakob Prange}}
+\author[***]{\\\textbf{Jakob Prange}}
 \author[***]{\textbf{Nathan Schneider}}
 \affil[*]{Hebrew University of Jerusalem}
 \affil[**]{University of Copenhagen}
@@ -77,16 +77,16 @@ This is an introductory tutorial to UCCA (Universal Conceptual Cognitive Annotat
 
 \section{Introduction}\label{sec:introduction}
 
-Universal Conceptual Cognitive Annotation \cite[UCCA;][]{abend2013universal} 
+Universal Conceptual Cognitive Annotation \cite{abend2013universal}, abbreviated as ``UCCA'',
 is a symbolic meaning representation (MR)
 that supports human annotation of text with broad coverage.
 While several meaning representation schemes share this goal
-\citep{abend2017state}, UCCA targets a level of semantic granularity that abstracts away from syntactic paraphrases in a typologically-motivated, cross-linguistic fashion, building on Basic Linguistic Theory \citep{Dixon:basic}, an influential framework for linguistic description.
+\cite{abend2017state}, UCCA targets a level of semantic granularity that abstracts away from syntactic paraphrases in a typologically-motivated, cross-linguistic fashion, building on Basic Linguistic Theory \cite{Dixon:basic}, an influential framework for linguistic description.
 The scheme does not rely on language-specific resources, and sets a low
 threshold for annotator training.
 
 UCCA has been annotated on several corpora of different genres and
-languages,\footnote{\tiny\url{https://github.com/UniversalConceptualCognitiveAnnotation}} as summarized in \cref{tab:data}.
+languages,\footnote{\url{https://github.com/UniversalConceptualCognitiveAnnotation}} as summarized in \cref{tab:data}.
 Pilot studies have been conducted in additional languages.
 A web-based annotation system is available \cite{abend2017uccaapp}.
 
@@ -110,7 +110,7 @@ equip them with the conceptual tools required for desigining new parsers;
 and to review existing extensions and possible future directions.\footnote{All material is available at \url{http://bit.ly/ucca-tutorial}.}
 
 \begin{table}[t]
-\centering\setlength{\tabcolsep}{3.5pt}
+\centering\setlength{\tabcolsep}{30pt}
 \begin{tabular}{ll|rr}
 & \bf Genre & \bf \# Tokens & \bf \# Sentences \\
 \hline
@@ -144,19 +144,19 @@ Category abbreviations: \ucca{\color{black}H} = parallel scene, \ucca{\color{Lco
 \section{Relevance}\label{sec:relevance}
 
 UCCA resources and applications are valuable for cross-lingual NLP:
-like Universal Dependencies \citep{nivre-etal-2020-universal},
+like Universal Dependencies \cite{nivre-etal-2020-universal},
 UCCA's category set can in principle be applied to a wide variety of languages.
 It is also cross-linguistically stable, and reflects a level of semantic structure that is usually preserved in translations \cite{sulem2015conceptual}.
-UCCA has been applied in NLP to text simplification \citep{sulem-etal-2018-simple,sulem-etal-2020-semantic},
-and text-to-text generation evaluation \citep{birch-etal-2016-hume,marecek-etal-2017-cuni,choshen-abend-2018-automatic,sulem-etal-2018-simple,alvamanchego-etal:2019:easse,xu2020incorporate}.
+UCCA has been applied in NLP to text simplification \cite{sulem-etal-2018-simple,sulem-etal-2020-semantic},
+and text-to-text generation evaluation \cite{birch-etal-2016-hume,marecek-etal-2017-cuni,choshen-abend-2018-automatic,sulem-etal-2018-simple,alvamanchego-etal:2019:easse,xu2020incorporate}.
 The tutorial will describe the guidelines and rationale behind UCCA,
 helping potential application designers understand what abstractions
 it makes.
 
 Significant effort has been devoted to building UCCA parsers
-\cite[][among others]{hershcovich2017a,jiang-19,zhang2019broad},
+\cite{hershcovich2017a,hershcovich2018multitask,jiang-19,lyu-etal-2019-cuny,tuan-nguyen-tran-2019-dangnt,taslimipoor-etal-2019-gcn,marzinotto-etal-2019-maskparse,putz-glocker-2019-tupa,yu-sagae-2019-uc,zhang2019broad,Her:Arv:19,Li:Zha:Zha:19,Don:Fow:Gro:19,Che:Dou:Xu:19,Bai:Zha:19,Lai:Lo:Leu:19,Kor:Mor:Mor:19,Str:Str:19,Cao:Zha:Sri:19,Zha:Jia:Xia:19,Dro:Kut:Med:19,Che:Ye:Sun:19,Arv:Cui:Her:20,Sam:Str:20,Dou:Fen:Ji:20},
 including a SemEval~2019 shared task
-on cross-lingual UCCA parsing \citep{hershcovich2019shared},
+on cross-lingual UCCA parsing \cite{hershcovich2019shared},
 which had 8 participating teams,
 as well as CoNLL~2019 and CoNLL~2020 shared tasks on cross-framework and cross-lingual meaning representation
 parsing \cite{Oep:Abe:Haj:19,Oep:Abe:Abz:20},
@@ -173,18 +173,18 @@ The tutorial will compare and contrast UCCA and other meaning representations,
 and will thereby inform participants of the potential advantages and difficulties
 in employing multi-task learning across semantic schemes.
 
-UCCA defines a small inventory of coarse-grained categories so as not to rely on language-specific lexical resources, and  can thus in principle be applied to a great variety of languages. This distinguishes UCCA from finer-grained sentence-structural representations like FrameNet \citep{Baker:98}, the Abstract Meaning Representation \citep[AMR;][]{banarescu2013abstract}, which relies on PropBank \citep{Palmer:05},
-and Universal Decompositional Semantics \citep[Decomp;][]{white2016universal}.
+UCCA defines a small inventory of coarse-grained categories so as not to rely on language-specific lexical resources, and  can thus in principle be applied to a great variety of languages. This distinguishes UCCA from finer-grained sentence-structural representations like FrameNet \cite{Baker:98}, the Abstract Meaning Representation \cite{banarescu2013abstract}, which relies on PropBank \cite{Palmer:05},
+and Universal Decompositional Semantics \cite{white2016universal}.
 For example, FrameNet requires a different ontology for each new language addressed \cite{ohara2003japanese,You2005BuildingCF,borin20132,park2014frame,hayoun-elhadad-2016-hebrew,djemaa-etal-2016-corpus},
 and AMR underwent significant customization to be applicable to Chinese
-\cite{li-etal-2016-annotating}. Decomp takes a different approach to multilinguality, where the parser is required to parse sentences in other languages to their corresponding {\it English} semantic forms \citep{zhang2018cross}.
+\cite{li-etal-2016-annotating}. Decomp takes a different approach to multilinguality, where the parser is required to parse sentences in other languages to their corresponding {\it English} semantic forms \cite{zhang2018cross}.
 The tutorial will address contemporary issues in the field, such as
 the question of how to represent semantic structure multilingually with
 broad coverage, which is actively being explored from many angles.
 
 While UCCA structures and categories are intentionally coarse, the scheme has a multi-layered architecture, which allows for refinement using additional {\it layers}, which serve as ``modules'' of semantic distinctions.
 We will give an overview of the recently proposed extensions
-(to support coreference) and joint parsing experiments \citep{prange2019made,prange2019semantically}.
+(to support coreference) and joint parsing experiments \cite{prange2019made,prange2019semantically}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -242,28 +242,28 @@ they provide background and frame the context in which the tutorial
 materials lie:
 
 \begin{enumerate}
-    \item Chapter 3 of \Citet{Dixon:05} contains an introduction
+    \item Chapter 3 of \newcite{Dixon:05} contains an introduction
     to some basic concepts in semantics on which UCCA is based.
-    \item \Citet{kiperwasser-goldberg-2016-simple} present a
+    \item \newcite{kiperwasser-goldberg-2016-simple} present a
     transition-based parser using an architecture on which TUPA, the first
     UCCA parser, is based \cite{hershcovich2017a}.
-    \item \Citet{P17-1186} performed multi-task learning for
+    \item \newcite{P17-1186} performed multi-task learning for
     meaning representation parsing, inspiring work on cross-framework
     parsing for UCCA \cite{hershcovich2018multitask}.
-    \item \Citet{abend2017state} compare and constrast several meaning
+    \item \newcite{abend2017state} compare and constrast several meaning
     representations according to various aspects.
-    \item \Citet{deng2017translation} investigate translation divergences
+    \item \newcite{deng2017translation} investigate translation divergences
     using a hierarchical alignment,
     and discuss bridging them with cross-lingual semantic representations.
-    \item \Citet{croft2017linguistic} list typologically-informed design 
-    criteria for Universal Dependencies \citep{nivre-etal-2020-universal},
+    \item \newcite{croft2017linguistic} list typologically-informed design 
+    criteria for Universal Dependencies \cite{nivre-etal-2020-universal},
     which are also relevant for other structural representations in NLP.
-    % \item \Citet{hershcovich2019shared} summarize the SemEval~2019 shared task on cross-lingual UCCA parsing.
-    % \item \Citet{jiang-19} describe the HLT@SUDA parser, winner of the SemEval~2019 shared task based on a constituency tree parser.
-    % \item \Citet{lyu-etal-2019-cuny} describe the CUNY-PKU parser, a
+    % \item \newcite{hershcovich2019shared} summarize the SemEval~2019 shared task on cross-lingual UCCA parsing.
+    % \item \newcite{jiang-19} describe the HLT@SUDA parser, winner of the SemEval~2019 shared task based on a constituency tree parser.
+    % \item \newcite{lyu-etal-2019-cuny} describe the CUNY-PKU parser, a
     % strong ensemble-based submission in the SemEval~2019 shared task.
-    % \item \Citet{Oep:Abe:Haj:19} summarize the CoNLL~2019 shared task on cross-framework meaning representation parsing, targeting UCCA and four other frameworks.
-    % \item \Citet{zhang2019broad} present a transduction-based
+    % \item \newcite{Oep:Abe:Haj:19} summarize the CoNLL~2019 shared task on cross-framework meaning representation parsing, targeting UCCA and four other frameworks.
+    % \item \newcite{zhang2019broad} present a transduction-based
     % semantic parser that is competitive on UCCA and two other
     % meaning representations.
 \end{enumerate}
@@ -300,10 +300,10 @@ He has experience with teaching in multicultural classroom settings and presenti
 \textbf{Nathan Schneider} (\url{http://nathan.cl})
 leads an interdisciplinary computational linguistics research group at Georgetown University. 
 He has worked on the design and parsing of a range of broad-coverage representations for different aspects and granularities of meaning, including multiword expressions, supersenses, frame semantics, AMR, and UCCA (as a multiyear collaboration with the copresenters). 
-He has experience teaching meaning representations in classroom settings as well as conference tutorials---notably, a tutorial on AMR \citep{amrtutorial} whose materials\footnote{\url{https://github.com/nschneid/amr-tutorial/}} continue to serve as a useful introduction to the scheme, 
+He has experience teaching meaning representations in classroom settings as well as conference tutorials---notably, a tutorial on AMR \cite{amrtutorial} whose materials\footnote{\url{https://github.com/nschneid/amr-tutorial/}} continue to serve as a useful introduction to the scheme, 
 and will serve as a model for the proposed UCCA tutorial.
 
-\bibliography{references}
-\bibliographystyle{acl_natbib}
+\bibliography{references,mrp,anthology}
+\bibliographystyle{coling}
 
 \end{document}
