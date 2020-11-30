@@ -258,8 +258,8 @@ predict its UCCA graph representation.}
         } edge from parent node[midway, fill=white] {P} }
       } edge from parent node[midway, fill=white] {A} }
       ;
-    \draw[bend left,dashed,->] (abouttakingashortbreak) to node [auto] {\scriptsize A} (They);
-    \draw[bend left,->] (abouttakingashortbreak) to node [auto] {\scriptsize D} (short);
+    \draw[bend left,dashed,->] (abouttakingashortbreak) to node [midway, fill=white] {\scriptsize A} (They);
+    \draw[bend left,->] (abouttakingashortbreak) to node [midway, fill=white] {\scriptsize D} (short);
 \end{tikzpicture}}
 \end{center}
 \end{frame}
@@ -297,11 +297,11 @@ Complex units are {\color{blue} non-terminal nodes}.
         } edge from parent node[midway, fill=white] {P} }
       } edge from parent node[midway, fill=white] {A} }
       ;
-    \draw[bend left,dashed,->,visible on=<-2>] (abouttakingashortbreak) to node [auto] {\scriptsize A} (They);
-    \draw[bend left,dashed,->,orange,very thick,visible on=<3->] (abouttakingashortbreak) to node [auto] {\scriptsize A} (They);
-    \draw[bend left,->,visible on=<1>] (abouttakingashortbreak) to node [auto] {\scriptsize D} (short);
-    \draw[bend left,->,visible on=<3->] (abouttakingashortbreak) to node [auto] {\scriptsize D} (short);
-    \draw[bend left,->,red,very thick,visible on=<2>] (abouttakingashortbreak) to node [auto] {\scriptsize D} (short);
+    \draw[bend left,dashed,->,visible on=<-2>] (abouttakingashortbreak) to node [midway, fill=white] {\scriptsize A} (They);
+    \draw[bend left,dashed,->,orange,very thick,visible on=<3->] (abouttakingashortbreak) to node [midway, fill=white] {\scriptsize A} (They);
+    \draw[bend left,->,visible on=<1>] (abouttakingashortbreak) to node [midway, fill=white] {\scriptsize D} (short);
+    \draw[bend left,->,visible on=<3->] (abouttakingashortbreak) to node [midway, fill=white] {\scriptsize D} (short);
+    \draw[bend left,->,red,very thick,visible on=<2>] (abouttakingashortbreak) to node [midway, fill=white] {\scriptsize D} (short);
     \node[visible on=<3->] at (3.5,-.4) {----- primary edge};
     \node[visible on=<3->] at (3.5,-1.4) {- - - remote edge};
 \end{tikzpicture}
@@ -331,7 +331,7 @@ Complex units are {\color{blue} non-terminal nodes}.
 \frametitle{Data Statistics}
 \centering
 \def\arraystretch{1.5}
-\scalebox{.7}{
+\scalebox{.85}{
 \begin{tabular}{l|r|rrr|r}
     & \multicolumn{1}{c|}{Wiki} & \multicolumn{3}{c|}{20K} & \multicolumn{1}{c}{EWT} \\
     & \multicolumn{1}{c|}{en} & \multicolumn{1}{c}{en} & \multicolumn{1}{c}{fr} & \multicolumn{1}{c|}{de} & \multicolumn{1}{c}{en} \\
@@ -350,8 +350,6 @@ Complex units are {\color{blue} non-terminal nodes}.
 }
 \end{frame}
 
-\subsection{TUPA}
-
 \begin{frame}
 \frametitle{Transition-based UCCA Parser}
 \textit{A Transition-Based Directed Acyclic Graph Parser for UCCA} \citep{hershcovich2017a}.
@@ -363,24 +361,24 @@ Complex units are {\color{blue} non-terminal nodes}.
     every node/.append style={font=\rmfamily},
     edge from parent path={(\tikzparentnode.center) -- (\tikzchildnode.north)}]
     \node(ROOT)[fill=black, circle] at (3,0) {}
-      child {node (They) {They} edge from parent node [left] {A}}
-      child {node (thought) {thought} edge from parent node [left] {P}}
+      child {node (They) {They} edge from parent node [midway, fill=white] {A}}
+      child {node (thought) {thought} edge from parent node [midway, fill=white] {P}}
       child {node (abouttakingashortbreak) [fill=blue, circle] {} 
       { 
-        child {node (to) {about} edge from parent node [right] {R}}
+        child {node (to) {about} edge from parent node [midway, fill=white] {R}}
         child {node (takingabreak) [fill=red, circle] {}
         {
-          child {node (take) {taking} edge from parent node [above] {F}}      
-          child {node (a) {a} edge from parent node [right] {F}} 
+          child {node (take) {taking} edge from parent node [midway, fill=white] {F}}      
+          child {node (a) {a} edge from parent node [midway, fill=white] {F}} 
           child {node (short) {short} edge from parent [draw=none]}
-          child {node (break) {break} edge from parent node [above] {C}}  
+          child {node (break) {break} edge from parent node [midway, fill=white] {C}}  
         } edge from parent [draw=none]}
       } edge from parent [draw=none]}
       ;
-    \draw(abouttakingashortbreak) to node [left] {P} (takingabreak); 
-    \draw(ROOT) to node [left] {A} (abouttakingashortbreak);
-    \draw[bend left,dashed] (abouttakingashortbreak) to node [auto] {A} (They);
-    \draw[bend left] (abouttakingashortbreak) to node [auto] {D} (short);
+    \draw(abouttakingashortbreak) to node [midway, fill=white] {P} (takingabreak); 
+    \draw(ROOT) to node [midway, fill=white] {A} (abouttakingashortbreak);
+    \draw[bend left,dashed] (abouttakingashortbreak) to node [midway, fill=white] {A} (They);
+    \draw[bend left] (abouttakingashortbreak) to node [midway, fill=white] {D} (short);
 \end{tikzpicture}}
 \[\Updownarrow\]
 \begin{flushleft}
@@ -510,24 +508,24 @@ Transitions:
     edge from parent path={(\tikzparentnode.center) -- (\tikzchildnode.north)}]
     \node[anchor=west,style={font=\sffamily}] at (0,0) {graph};
     \node(ROOT)[fill=black, circle, visible on=<1->] at (3,0) {}
-      child [visible on=<2->,alt=<2>{draw=red}{}] {node (They) {They} edge from parent node [left] {A}}
-      child [visible on=<5->,alt=<5>{draw=red}{}] {node (thought) {thought} edge from parent node [left] {P}}
+      child [visible on=<2->,alt=<2>{draw=red}{}] {node (They) {They} edge from parent node [midway, fill=white] {A}}
+      child [visible on=<5->,alt=<5>{draw=red}{}] {node (thought) {thought} edge from parent node [midway, fill=white] {P}}
       child [visible on=<9->] {node (abouttakingashortbreak) [fill=blue, circle] {}
       {
-        child [visible on=<9->,alt=<9>{draw=red}{}] {node (to) {about} edge from parent node [right] {R}}
+        child [visible on=<9->,alt=<9>{draw=red}{}] {node (to) {about} edge from parent node [midway, fill=white] {R}}
         child [visible on=<14->] {node (takingabreak) [fill=red, circle] {}
         {
-          child [visible on=<14->] {node (take) {taking} edge from parent node [above] {F}}
-          child [visible on=<19->,alt=<19>{draw=red}{}] {node (a) {a} edge from parent node [right] {F}}
+          child [visible on=<14->] {node (take) {taking} edge from parent node [midway, fill=white] {F}}
+          child [visible on=<19->,alt=<19>{draw=red}{}] {node (a) {a} edge from parent node [midway, fill=white] {F}}
           child [visible on=<23->,alt=<23>{draw=red}{}] {node (short) {short} edge from parent [draw=none]}
-          child [visible on=<32->,alt=<32>{draw=red}{}] {node (break) {break} edge from parent node [above] {C}}
+          child [visible on=<32->,alt=<32>{draw=red}{}] {node (break) {break} edge from parent node [midway, fill=white] {C}}
         } edge from parent [draw=none]}
       } edge from parent [draw=none]}
       ;
-    \draw[visible on=<17->,alt=<17>{draw=red}{}] (abouttakingashortbreak) to node [left] {\scriptsize P} (takingabreak);
-    \draw[visible on=<26->,alt=<26>{draw=red}{}] (ROOT) to node [left] {\scriptsize A} (abouttakingashortbreak);
-    \draw[bend left,dashed, visible on=<12->,alt=<12>{draw=red}{}] (abouttakingashortbreak) to node [auto] {\scriptsize A} (They);
-    \draw[bend left, visible on=<23->,alt=<23>{draw=red}{}] (abouttakingashortbreak) to node [auto] {\scriptsize D} (short);
+    \draw[visible on=<17->,alt=<17>{draw=red}{}] (abouttakingashortbreak) to node [midway, fill=white] {\scriptsize P} (takingabreak);
+    \draw[visible on=<26->,alt=<26>{draw=red}{}] (ROOT) to node [midway, fill=white] {\scriptsize A} (abouttakingashortbreak);
+    \draw[bend left,dashed, visible on=<12->,alt=<12>{draw=red}{}] (abouttakingashortbreak) to node [midway, fill=white] {\scriptsize A} (They);
+    \draw[bend left, visible on=<23->,alt=<23>{draw=red}{}] (abouttakingashortbreak) to node [midway, fill=white] {\scriptsize D} (short);
 \end{tikzpicture}}
 \end{frame}
 
@@ -567,17 +565,17 @@ Learns to predict next transition based on current state.
     \node[anchor=west,style={font=\sffamily}] at (3,0) {graph};
     \draw[color=gray] (.2,.3) rectangle (3.9,-3.2);
     \node(ROOT)[fill=black, circle] at (1.2,0) {}
-      child {node (They) {They} edge from parent node [left] {A}}
-      child {node {thought} edge from parent node [left] {P}}
+      child {node (They) {They} edge from parent node [midway, fill=white] {A}}
+      child {node {thought} edge from parent node [midway, fill=white] {P}}
       child {node (abouttakingashortbreak) [fill=blue, circle] {}
       {
-        child {node {about} edge from parent node [left] {R}}
+        child {node {about} edge from parent node [midway, fill=white] {R}}
         child {node (takingabreak) [fill=red, circle] {}
         {
-          child {node {taking} edge from parent node [above] {F}}
-          child [opacity=0] {node {a} edge from parent node [right] {F}}
+          child {node {taking} edge from parent node [midway, fill=white] {F}}
+          child [opacity=0] {node {a} edge from parent node [midway, fill=white] {F}}
           child [opacity=0] {node (short) {short} edge from parent [draw=none]}
-          child [opacity=0] {node {break} edge from parent node [right] {C}}
+          child [opacity=0] {node {break} edge from parent node [midway, fill=white] {C}}
         } edge from parent [draw=none]}
       } edge from parent [draw=none]}
       ;
@@ -634,24 +632,24 @@ An \textit{oracle} provides the transition sequence given the correct graph:
     every node/.append style={font=\rmfamily},
     edge from parent path={(\tikzparentnode.center) -- (\tikzchildnode.north)}]
     \node(ROOT)[fill=black, circle] at (3,0) {}
-      child {node (They) {They} edge from parent node [left] {A}}
-      child {node (thought) {thought} edge from parent node [left] {P}}
+      child {node (They) {They} edge from parent node [midway, fill=white] {A}}
+      child {node (thought) {thought} edge from parent node [midway, fill=white] {P}}
       child {node (abouttakingashortbreak) [fill=blue, circle] {} 
       { 
-        child {node (to) {about} edge from parent node [right] {R}}
+        child {node (to) {about} edge from parent node [midway, fill=white] {R}}
         child {node (takingabreak) [fill=red, circle] {}
         {
-          child {node (take) {taking} edge from parent node [above] {F}}      
-          child {node (a) {a} edge from parent node [right] {F}} 
+          child {node (take) {taking} edge from parent node [midway, fill=white] {F}}      
+          child {node (a) {a} edge from parent node [midway, fill=white] {F}} 
           child {node (short) {short} edge from parent [draw=none]}
-          child {node (break) {break} edge from parent node [above] {C}}  
+          child {node (break) {break} edge from parent node [midway, fill=white] {C}}  
         } edge from parent [draw=none]}
       } edge from parent [draw=none]}
       ;
-    \draw(abouttakingashortbreak) to node [left] {P} (takingabreak); 
-    \draw(ROOT) to node [left] {A} (abouttakingashortbreak);
-    \draw[bend left,dashed] (abouttakingashortbreak) to node [auto] {A} (They);
-    \draw[bend left] (abouttakingashortbreak) to node [auto] {D} (short);
+    \draw(abouttakingashortbreak) to node [midway, fill=white] {P} (takingabreak); 
+    \draw(ROOT) to node [midway, fill=white] {A} (abouttakingashortbreak);
+    \draw[bend left,dashed] (abouttakingashortbreak) to node [midway, fill=white] {A} (They);
+    \draw[bend left] (abouttakingashortbreak) to node [midway, fill=white] {D} (short);
 \end{tikzpicture}}
 \[\Updownarrow\]
 \begin{flushleft}
@@ -672,7 +670,7 @@ Learns to greedily predict transition based on current state.
 
 Features include:
 
-\{words, parts of speech, syntactic dependencies, existing edge labels\} \\
+\{words, parts of speech, syntactic dependencies, edge labels\} \\
 from the stack and buffer + parents, children, grandchildren.
 
 \vspace{5mm}
@@ -724,17 +722,17 @@ from the stack and buffer + parents, children, grandchildren.
     \node[anchor=west,style={font=\sffamily}] at (3,0) {graph};
     \draw[color=gray] (.2,.3) rectangle (3.9,-3.2);
     \node(ROOT)[fill=black, circle] at (1.2,0) {}
-      child {node (They) {They} edge from parent node [left] {A}}
-      child {node {thought} edge from parent node [left] {P}}
+      child {node (They) {They} edge from parent node [midway, fill=white] {A}}
+      child {node {thought} edge from parent node [midway, fill=white] {P}}
       child {node (abouttakingashortbreak) [fill=blue, circle] {}
       {
-        child {node {about} edge from parent node [left] {R}}
+        child {node {about} edge from parent node [midway, fill=white] {R}}
         child {node (takingabreak) [fill=red, circle] {}
         {
-          child {node {taking} edge from parent node [above] {F}}
-          child [opacity=0] {node {a} edge from parent node [right] {F}}
+          child {node {taking} edge from parent node [midway, fill=white] {F}}
+          child [opacity=0] {node {a} edge from parent node [midway, fill=white] {F}}
           child [opacity=0] {node (short) {short} edge from parent [draw=none]}
-          child [opacity=0] {node {break} edge from parent node [right] {C}}
+          child [opacity=0] {node {break} edge from parent node [midway, fill=white] {C}}
         } edge from parent [draw=none]}
       } edge from parent [draw=none]}
       ;
@@ -780,7 +778,7 @@ from the stack and buffer + parents, children, grandchildren.
 \end{frame}
 
 \begin{frame}
-\frametitle{Comparing to Existing Methods}
+\frametitle{Comparing to Dependency Parsers}
 Using conversion-based approximation as baseline, \\
 with bi-lexical DAG parsers and transition-based tree parsers.
 
@@ -823,39 +821,40 @@ with bi-lexical DAG parsers and transition-based tree parsers.
     \end{tikzpicture}
   \end{flushright}
 \end{minipage}
-\begin{minipage}{.5\textwidth}
+\begin{minipage}{.4\textwidth}
+    \scalebox{.8}{
     \begin{tikzpicture}[level distance=13mm, sibling distance=17mm, ->, thick,
         every circle node/.append style={fill=black},
         edge from parent/.append style={nodes={font=\scriptsize}},
         edge from parent path={(\tikzparentnode.center) -- (\tikzchildnode.north)}]
       \tikzstyle{word} = [font=\rmfamily,color=black]
       \node (ROOT) [circle] {}
-        child {node (After) [word] {After} edge from parent node[left] {L}}
+        child {node (After) [word] {After} edge from parent node[midway, fill=white] {L}}
         child {node (graduation) [circle] {}
         {
-          child {node [word] {graduation} edge from parent node[left] {P}}
-        } edge from parent node[left] {H} }
-        child {node [word] {,} edge from parent node[right] {U}}
+          child {node [word] {graduation} edge from parent node[midway, fill=white] {P}}
+        } edge from parent node[midway, fill=white] {H} }
+        child {node [word] {,} edge from parent node[midway, fill=white] {U}}
         child {node (moved) [circle] {}
         {
-          child {node (John) [word] {John} edge from parent node[left] {A}}
-          child {node [word] {moved} edge from parent node[left] {P}}
+          child {node (Daniel) [word] {Daniel} edge from parent node[midway, fill=white] {A}}
+          child {node [word] {moved} edge from parent node[midway, fill=white] {P}}
           child {node [circle] {}
           {
-            child {node [word] {to} edge from parent node[left] {R}}
-            child {node [word] {Copenhagen} edge from parent node[right] {C}}
-          } edge from parent node[right] {A} }
-        } edge from parent node[right] {H} }
+            child {node [word] {to} edge from parent node[midway, fill=white] {R}}
+            child {node [word] {Copenhagen} edge from parent node[midway, fill=white] {C}}
+          } edge from parent node[midway, fill=white] {A} }
+        } edge from parent node[midway, fill=white] {H} }
         ;
-      \draw[dashed,->] (graduation) to node [auto] {\scriptsize A} (John);
-    \end{tikzpicture}
+      \draw[dashed,->] (graduation) to node [midway, fill=white] {\scriptsize A} (Daniel);
+    \end{tikzpicture}}
 \end{minipage}
 
 \vspace{-14mm}
 \begin{flushleft}
     \begin{dependency}
     \begin{deptext}[column sep=.7em,ampersand replacement=\^,font=\rmfamily, thick]
-	After \^ graduation \^ , \^ John \^ moved \^ to \^ Copenhagen \\
+	After \^ graduation \^ , \^ Daniel \^ moved \^ to \^ Copenhagen \\
     \end{deptext}
     \depedge{2}{1}{L}
     \depedge{2}{3}{U}
@@ -870,31 +869,31 @@ with bi-lexical DAG parsers and transition-based tree parsers.
 
 
 \begin{frame}
-    \frametitle{Meaning Representations}
+    \frametitle{Other Semantic/Syntactic Representations}
 
       \begin{flushright}
         \scalebox{.4}{
 \begin{tikzpicture}[level distance=2cm, sibling distance=25mm, ->, draw=Indigo, thick]
     \node[font=\bf\sffamily\Huge,Indigo] at (-3,0) {UCCA};
     \node (ROOT) [fill=Indigo, circle] {}
-      child {node (After) {After} edge from parent node[left] {L\;}}
+      child {node (After) {After} edge from parent node[midway, fill=white] {L\;}}
       child {node (graduation) [fill=Indigo, circle] {}
       {
-        child {node {graduation} edge from parent node[left] {P}}
-      } edge from parent node[left] {H} }
-      child {node {,} edge from parent node[right] {U}}
+        child {node {graduation} edge from parent node[midway, fill=white] {P}}
+      } edge from parent node[midway, fill=white] {H} }
+      child {node {,} edge from parent node[midway, fill=white] {U}}
       child {node (moved) [fill=Indigo, circle] {}
       {
-        child {node (Daniel) {Daniel} edge from parent node[left] {A}}
-        child {node {moved} edge from parent node[left] {P}}
+        child {node (Daniel) {Daniel} edge from parent node[midway, fill=white] {A}}
+        child {node {moved} edge from parent node[midway, fill=white] {P}}
         child {node [fill=Indigo, circle] {}
         {
-          child {node {to} edge from parent node[left] {R}}
-          child {node {Copenhagen} edge from parent node[left] {C}}
-        } edge from parent node[left] {A} }
-      } edge from parent node[right] {H} }
+          child {node {to} edge from parent node[midway, fill=white] {R}}
+          child {node {Copenhagen} edge from parent node[midway, fill=white] {C}}
+        } edge from parent node[midway, fill=white] {A} }
+      } edge from parent node[midway, fill=white] {H} }
       ;
-    \draw[dashed,->] (graduation) to node [auto] {A} (Daniel);
+    \draw[dashed,->] (graduation) to node [midway, fill=white] {A} (Daniel);
 \end{tikzpicture}
         }
       \end{flushright}
@@ -927,12 +926,11 @@ a4 ->  ["op1"' above] a4 Copenhagen;
 \draw[->, above, DarkGreen] (a6) to node[sloped] {ARG0} (a1);
 \end{tikzpicture}
       }
-    \vspace{-15mm}
     
     \begin{flushright}
-    \begin{minipage}{.01\textwidth}
+    \begin{minipage}{.05\textwidth}
       \begin{tikzpicture}
-        \node[font=\bf\sffamily\Large,DarkRed] {DM};
+        \node[font=\bf\sffamily\large,DarkRed] {DM};
       \end{tikzpicture}
     \end{minipage}
     \begin{minipage}{.6\textwidth}
@@ -953,15 +951,12 @@ a4 ->  ["op1"' above] a4 Copenhagen;
     }
     \end{minipage}
     \end{flushright}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Syntactic Representations}
+    
     {\color{DarkBlue}\bf\sffamily\Large UD} (Universal Dependencies)
     
     \begin{center}
     \rmfamily
+    \scalebox{.8}{
     \begin{dependency}[text only label, edge style={-{Latex[length=2mm]}, color=DarkBlue}, thick,
                        label style={above, color=DarkBlue, font=\bf\ttfamily}, font=\small]
     \begin{deptext}[column sep=.8em,ampersand replacement=\^]
@@ -974,7 +969,7 @@ a4 ->  ["op1"' above] a4 Copenhagen;
         \depedge{7}{6}{case}
         \deproot[edge unit distance=2.5ex]{5}{root}
         \depedge{5}{7}{obl}
-    \end{dependency}
+    \end{dependency}}
     \end{center}
 \end{frame}
 
@@ -1058,7 +1053,7 @@ a4 ->  ["op1"' above] a4 Copenhagen;
           child {node [word] {Copenhagen{\color{white}g}} edge from parent node {head}}
       } edge from parent node {obl}}
       ;
-      \draw (ROOT) to node {punct} (comma);
+      \draw[gray] (ROOT) to node {punct} (comma);
       \draw (ROOT) to node {nsubj} (Daniel);
       \draw (ROOT) to node {head} (moved);
   \end{tikzpicture}
@@ -1070,13 +1065,13 @@ a4 ->  ["op1"' above] a4 Copenhagen;
 \vspace{4mm}
 AMR\\
 \vspace{13mm}
-SDP\\
+DM\\
 \vspace{8mm}
-\mbox{CoNLL-U}
+\mbox{UD}
 \end{minipage}
 \begin{minipage}{.44\textwidth}
   \centering
-  \scalebox{.55}{
+  \scalebox{.5}{
   \begin{tikzpicture}[->,
       every node/.append style={sloped,anchor=south,auto=false,font=\tiny},
       level 1/.style={level distance=14mm,sibling distance=26mm},
@@ -1087,30 +1082,30 @@ SDP\\
       {
             child {node (graduation) [draw=black,ellipse] {graduate-01} edge from parent node {op1} }
       } edge from parent node {time} }
-      child {node (John) [draw=black,ellipse] {person}
+      child {node (Daniel) [draw=black,ellipse] {person}
       {
         child {node [draw=black,ellipse] {name}
         {
-            child {node [draw=black,ellipse] {"John"} edge from parent node {op1} }
+            child {node [draw=black,ellipse] {"Daniel"} edge from parent node {op1} }
         } edge from parent node {name} }
       } edge from parent node {ARG0} }
       child {node [draw=black,ellipse] {city}
       {
         child {node [draw=black,ellipse] {name}
         {
-            child {node [draw=black,ellipse] {"Paris"} edge from parent node {op1} }
+            child {node [draw=black,ellipse] {"Copenhagen"} edge from parent node {op1} }
         } edge from parent node {name} }
       } edge from parent node {ARG2} }
       ;
-      \draw (graduation) to node {ARG0} (John);
+      \draw (graduation) to node {ARG0} (Daniel);
   \end{tikzpicture}
   }
   
   \vspace{5mm}
-  \scalebox{.6}{
+  \scalebox{.45}{
     \begin{dependency}[text only label, label style={above}, font=\small]
     \begin{deptext}[column sep=.8em,ampersand replacement=\^]
-    After \^ graduation \^ , \^ John \^ moved \^ to \^ Paris \\
+    After \^ graduation \^ , \^ Daniel \^ moved \^ to \^ Copenhagen \\
     \end{deptext}
         \depedge{1}{2}{ARG2}
         \depedge{5}{4}{ARG1}
@@ -1123,10 +1118,10 @@ SDP\\
     }
     
   \vspace{5mm}
-  \scalebox{.55}{
+  \scalebox{.45}{
     \begin{dependency}[text only label, label style={above}, font=\small]
     \begin{deptext}[column sep=.8em,ampersand replacement=\^]
-    After \^ graduation \^ , \^ John \^ moved \^ to \^ Paris \\
+    After \^ graduation \^ , \^ Daniel \^ moved \^ to \^ Copenhagen \\
     \end{deptext}
         \depedge{2}{1}{case}
         \depedge{4}{3}{punct}
@@ -1162,20 +1157,20 @@ SDP\\
       {
             child {node (graduation) [word] {graduation} edge from parent node {op} }
       } edge from parent node {time} }
-      child {node (John) [fill=black,circle] {}
+      child {node (Daniel) [fill=black,circle] {}
       {
-        child {node [word] {John} edge from parent node {name} }
+        child {node [word] {Daniel} edge from parent node {name} }
       } edge from parent node {ARG0} }
       child {node [fill=black,circle] {}
       {
-        child {node [word] {Paris} edge from parent node {name} }
+        child {node [word] {Copenhagen} edge from parent node {name} }
       } edge from parent node {ARG2} }
       ;
-      \draw[dashed] (graduation) to node {ARG0} (John);
+      \draw[dashed] (graduation) to node {ARG0} (Daniel);
   \end{tikzpicture}}
 
   \vspace{5mm}
-  \scalebox{.6}{
+  \scalebox{.5}{
   \begin{tikzpicture}[level distance=14mm, ->,
       every node/.append style={sloped,anchor=south,auto=false,font=\scriptsize},
       level 1/.style={sibling distance=29mm,level distance=6mm},
@@ -1197,7 +1192,7 @@ SDP\\
       {
         child {node (moved) [fill=black,circle] {}
         {
-          child {node [word] {\quad{\color{white}g} John} edge from parent node {ARG1}}
+          child {node [word] {\quad{\color{white}g} Daniel} edge from parent node {ARG1}}
           child {node [word] {moved{\color{white}g}} edge from parent node {head}}
         } edge from parent [draw=none] }
       } edge from parent [draw=none] }
@@ -1209,7 +1204,7 @@ SDP\\
           } edge from parent [draw=none] }
           child {node [draw=none] {}
         {
-          child {node [word] (Paris) {Paris{\color{white}g}} edge from parent [draw=none]}
+          child {node [word] (Copenhagen) {Copenhagen{\color{white}g}} edge from parent [draw=none]}
         } edge from parent [draw=none] }
       } edge from parent node {root}}
       ;
@@ -1219,8 +1214,8 @@ SDP\\
       \draw[dashed] (after) to node {ARG1} (moved);
       \draw[dashed] (to) to node {ARG1} (moved);
       \draw (to) to node {head} (to_word);
-      \draw (moved) to node {ARG2} (Paris);
-      \draw[dashed] (to) to node {ARG2} (Paris);
+      \draw (moved) to node {ARG2} (Copenhagen);
+      \draw[dashed] (to) to node {ARG2} (Copenhagen);
   \end{tikzpicture}}
 
   \vspace{5mm}
@@ -1242,7 +1237,7 @@ SDP\\
       } edge from parent [draw=none]}
       child {node {}
       {
-        child {node [word] (John) {John{\color{white}g}} edge from parent [draw=none]}
+        child {node [word] (Daniel) {Daniel{\color{white}g}} edge from parent [draw=none]}
       } edge from parent [draw=none]}
       child {node {}
       {
@@ -1251,11 +1246,11 @@ SDP\\
       child {node (to) [fill=black,circle] {}
       {
           child {node [word] {to{\color{white}g}} edge from parent node {case}}
-          child {node [word] {Paris{\color{white}g}} edge from parent node {head}}
+          child {node [word] {Copenhagen{\color{white}g}} edge from parent node {head}}
       } edge from parent node {obl}}
       ;
       \draw (ROOT) to node {punct} (comma);
-      \draw (ROOT) to node {nsubj} (John);
+      \draw (ROOT) to node {nsubj} (Daniel);
       \draw (ROOT) to node {head} (moved);
   \end{tikzpicture}}
 \end{minipage}
@@ -1283,7 +1278,7 @@ SDP\\
         } edge from parent node[midway, fill=white] {A} }
       } edge from parent node[midway, fill=white] {H} }
       ;
-    \draw[dashed,->] (playing) to node [auto] {A} (children);
+    \draw[dashed,->] (playing) to node [midway, fill=white] {A} (children);
 \end{tikzpicture}
 }
 
@@ -1323,46 +1318,8 @@ a5 ->  ["op1"' above] a6;
     }
 }
 
-
-\def\convertedudgraduation{
-  \begin{tikzpicture}[level distance=15mm, ->, draw=DarkBlue, thick,
-      every node/.append style={sloped,anchor=south,auto=false,font=\scriptsize},
-      level 1/.style={sibling distance=16mm},
-      level 2/.style={sibling distance=13mm},
-      edge from parent path={(\tikzparentnode.center) -- (\tikzchildnode.north)}]
-    \tikzstyle{word} = [font=\rmfamily,color=black]
-    \node (ROOT) [fill=DarkBlue,circle] {}
-      child {node (after) [fill=DarkBlue,circle] {}
-      {
-        child {node [word] {After{\color{white}g}\quad\quad} edge from parent node {case}}
-        child {node [word] {\quad graduation\quad\quad} edge from parent node {head}}
-      } edge from parent node {obl}}
-      child {node {}
-      {
-        child {node [word] (comma) {\quad,{\color{white}g}} edge from parent [draw=none]}
-      } edge from parent [draw=none]}
-      child {node {}
-      {
-        child {node [word] (Daniel) {Daniel{\color{white}g}} edge from parent [draw=none]}
-      } edge from parent [draw=none]}
-      child {node {}
-      {
-        child {node [word] (moved) {moved{\color{white}g}} edge from parent [draw=none]}
-      } edge from parent [draw=none]}
-      child {node (to) [fill=DarkBlue,circle] {}
-      {
-          child {node [word] {to{\color{white}g}} edge from parent node {case}}
-          child {node [word] {Copenhagen{\color{white}g}} edge from parent node {head}}
-      } edge from parent node {obl}}
-      ;
-      \draw (ROOT) to node {punct} (comma);
-      \draw (ROOT) to node {nsubj} (Daniel);
-      \draw (ROOT) to node {head} (moved);
-  \end{tikzpicture}
-}
-
 \begin{frame}
-    \frametitle{Sharing for better generalization}
+    \frametitle{Sharing for Better Generalization}
 
     \textit{Multitask Parsing Across Semantic Representations} \citep{hershcovich2018multitask}
 
@@ -1419,7 +1376,7 @@ a5 ->  ["op1"' above] a6;
         \path (specific) edge (mlp);
         \path[color=DarkCyan] (shared) edge (mlp);
         \node (transition) at (10.5,17.8) {};
-        \path (mlp) edge node[right] {} (transition);
+        \path (mlp) edge node[midway, fill=white] {} (transition);
        \end{tikzpicture}}
     \end{center}
 \end{frame}
@@ -1444,43 +1401,43 @@ TUPA output: \\
     {
     child {node (1_5) [circle] {}
       {
-      child {node (1_10) [word] {No} edge from parent node[auto] {\scriptsize $E$}}
-      child {node (1_11) [word] {transoceanic} edge from parent node[auto] {\scriptsize $E$}}
-      child {node (1_12) [word] {navigational} edge from parent node[auto] {\scriptsize $E$}}
-      child {node (1_13) [word] {undertaking} edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $A$}}
+      child {node (1_10) [word] {No} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+      child {node (1_11) [word] {transoceanic} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+      child {node (1_12) [word] {navigational} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+      child {node (1_13) [word] {undertaking} edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $A$}}
     child {node (1_6) [circle] {}
       {
-      child {node (1_14) [word] {has} edge from parent node[auto] {\scriptsize $F$}}
-      child {node (1_15) [word] {been} edge from parent node[auto] {\scriptsize $E$}}
-      child {node (1_16) [word] {conducted} edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $P$}}
+      child {node (1_14) [word] {has} edge from parent node[midway, fill=white] {\scriptsize $F$}}
+      child {node (1_15) [word] {been} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+      child {node (1_16) [word] {conducted} edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $P$}}
     child {node (1_7) [circle] {}
       {
-      child {node (1_17) [word] {with} edge from parent node[auto] {\scriptsize $R$}}
+      child {node (1_17) [word] {with} edge from parent node[midway, fill=white] {\scriptsize $R$}}
       child {node (1_18) [circle] {}
         {
         child {node (1_25) [circle] {}
           {
-          child {node (1_28) [word] {more} edge from parent node[auto] {\scriptsize $E$}}
-          child {node (1_29) [word] {ability} edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $C$}}
+          child {node (1_28) [word] {more} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+          child {node (1_29) [word] {ability} edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $C$}}
         child {node (1_27) [circle] {}
           {
-          child {node (1_30) [word] {no} edge from parent node[auto] {\scriptsize $E$}}
+          child {node (1_30) [word] {no} edge from parent node[midway, fill=white] {\scriptsize $E$}}
           child {node (1_31) [circle] {}
             {
-            child {node (1_32) [word] {business} edge from parent node[auto] {\scriptsize $E$}}
-            child {node (1_33) [word] {dealings} edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $A$}} }edge from parent node[auto] {\scriptsize $H$}}
+            child {node (1_32) [word] {business} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+            child {node (1_33) [word] {dealings} edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $A$}} }edge from parent node[midway, fill=white] {\scriptsize $H$}}
   child {node (1_3) [circle] {}
     {
     child {node (1_8) [circle] {}
       {
-      child {node (1_19) [word] {have} edge from parent node[auto] {\scriptsize $F$}}
-      child {node (1_20) [word] {been} edge from parent node[auto] {\scriptsize $E$}}
-      child {node (1_21) [word] {crowned} edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $P$}}
+      child {node (1_19) [word] {have} edge from parent node[midway, fill=white] {\scriptsize $F$}}
+      child {node (1_20) [word] {been} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+      child {node (1_21) [word] {crowned} edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $P$}}
     child {node (1_9) [circle] {}
       {
-      child {node (1_22) [word] {with} edge from parent node[auto] {\scriptsize $R$}}
-      child {node (1_23) [word] {greater} edge from parent node[auto] {\scriptsize $D$}}
-      child {node (1_24) [word] {success} edge from parent node[auto] {\scriptsize $P$}} }edge from parent node[auto] {\scriptsize $A$}} }edge from parent node[auto] {\scriptsize $H$}} }
+      child {node (1_22) [word] {with} edge from parent node[midway, fill=white] {\scriptsize $R$}}
+      child {node (1_23) [word] {greater} edge from parent node[midway, fill=white] {\scriptsize $D$}}
+      child {node (1_24) [word] {success} edge from parent node[midway, fill=white] {\scriptsize $P$}} }edge from parent node[midway, fill=white] {\scriptsize $A$}} }edge from parent node[midway, fill=white] {\scriptsize $H$}} }
 ;
 \end{tikzpicture}}
 
@@ -1503,46 +1460,47 @@ Multi-task TUPA output: \\
     {
     child {node (1_6) [circle] {}
       {
-      child {node (1_12) [word] {No} edge from parent node[auto] {\scriptsize $E$}}
-      child {node (1_13) [word] {transoceanic} edge from parent node[auto] {\scriptsize $E$}}
-      child {node (1_14) [word] {navigational} edge from parent node[auto] {\scriptsize $E$}}
-      child {node (1_15) [word] {undertaking} edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $A$}}
+      child {node (1_12) [word] {No} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+      child {node (1_13) [word] {transoceanic} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+      child {node (1_14) [word] {navigational} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+      child {node (1_15) [word] {undertaking} edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $A$}}
     child {node (1_7) [circle] {}
       {
-      child {node (1_16) [word] {has} edge from parent node[auto] {\scriptsize $F$}}
-      child {node (1_17) [word] {been} edge from parent node[auto] {\scriptsize $F$}}
-      child {node (1_18) [word] {conducted} edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $P$}}
+      child {node (1_16) [word] {has} edge from parent node[midway, fill=white] {\scriptsize $F$}}
+      child {node (1_17) [word] {been} edge from parent node[midway, fill=white] {\scriptsize $F$}}
+      child {node (1_18) [word] {conducted} edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $P$}}
     child {node (1_8) [circle] {}
       {
-      child {node (1_19) [word] {with} edge from parent node[auto] {\scriptsize $R$}}
-      child {node (1_20) [word] {more} edge from parent node[auto] {\scriptsize $E$}}
-      child {node (1_21) [word] {ability} edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $A$}} }edge from parent node[auto] {\scriptsize $H$}}
+      child {node (1_19) [word] {with} edge from parent node[midway, fill=white] {\scriptsize $R$}}
+      child {node (1_20) [word] {more} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+      child {node (1_21) [word] {ability} edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $A$}} }edge from parent node[midway, fill=white] {\scriptsize $H$}}
   child {node (1_4) [circle] {}
     {
     child {node (1_9) [circle] {}
       {
-      child {node (1_22) [word] {no} edge from parent node[auto] {\scriptsize $E$}}
-      child {node (1_23) [word] {business} edge from parent node[auto] {\scriptsize $E$}}
-      child {node (1_24) [word] {dealings} edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $A$}}
+      child {node (1_22) [word] {no} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+      child {node (1_23) [word] {business} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+      child {node (1_24) [word] {dealings} edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $A$}}
     child {node (1_10) [circle] {}
       {
-      child {node (1_25) [word] {have} edge from parent node[auto] {\scriptsize $F$}}
-      child {node (1_26) [word] {been} edge from parent node[auto] {\scriptsize $F$}}
-      child {node (1_27) [word] {crowned} edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $P$}}
+      child {node (1_25) [word] {have} edge from parent node[midway, fill=white] {\scriptsize $F$}}
+      child {node (1_26) [word] {been} edge from parent node[midway, fill=white] {\scriptsize $F$}}
+      child {node (1_27) [word] {crowned} edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $P$}}
     child {node (1_11) [circle] {}
       {
-      child {node (1_28) [word] {with} edge from parent node[auto] {\scriptsize $R$}}
-      child {node (1_29) [word] {greater} edge from parent node[auto] {\scriptsize $E$}}
-      child {node (1_30) [word] {success} edge from parent node[auto] {\scriptsize $C$}} }edge from parent node[auto] {\scriptsize $A$}} }edge from parent node[auto] {\scriptsize $H$}} }
+      child {node (1_28) [word] {with} edge from parent node[midway, fill=white] {\scriptsize $R$}}
+      child {node (1_29) [word] {greater} edge from parent node[midway, fill=white] {\scriptsize $E$}}
+      child {node (1_30) [word] {success} edge from parent node[midway, fill=white] {\scriptsize $C$}} }edge from parent node[midway, fill=white] {\scriptsize $A$}} }edge from parent node[midway, fill=white] {\scriptsize $H$}} }
 ;
 \end{tikzpicture}}
 \end{frame}
 
+\section{Evaluation}
 
 \begin{frame}
-\frametitle{Evaluation}
+\frametitle{Unlabeled Evaluation of UCCA Parsing}
 \begin{adjustbox}{frame,scale=.55,center}
-    \begin{tikzpicture}[level distance=12mm, sibling distance=19mm, ->,
+    \begin{tikzpicture}[level distance=12mm, sibling distance=19mm, ->, thick,
         every circle node/.append style={fill=black},
         edge from parent/.append style={nodes={font=\scriptsize}},
         edge from parent path={(\tikzparentnode.center) -- (\tikzchildnode.north)}]
@@ -1554,43 +1512,43 @@ Multi-task TUPA output: \\
         {
           child {node [word] {graduation} edge from parent node[midway, fill=white] {P}}
         } edge from parent node[midway, fill=white] {H} }
-        child {node [word] {,} edge from parent node[midway, fill=white] {U}}
+        child {node [word] {,} edge from parent [gray] node[midway, fill=white] {U}}
         child {node (moved) [circle] {}
         {
-          child {node (John) [word] {John} edge from parent node[midway, fill=white] {A}}
+          child {node (Daniel) [word] {Daniel} edge from parent node[midway, fill=white] {A}}
           child {node [word] {moved} edge from parent node[midway, fill=white] {P}}
           child {node [circle] {}
           {
-            child {node [word] {to} edge from parent node[midway, fill=white] {R}}
-            child {node [word] {Paris} edge from parent node[midway, fill=white] {C}}
-          } edge from parent node[midway, fill=white] {A} }
+            child {node [word] {to} edge from parent[black] node[midway, fill=white] {R}}
+            child {node [word] {Copenhagen} edge from parent[black] node[midway, fill=white] {C}}
+          } edge from parent[alt=<2>{red}{}] node[midway, fill=white] {A} }
         } edge from parent node[midway, fill=white] {H} }
         ;
-      \draw[dashed,->] (graduation) to node [auto] {\scriptsize A} (John);
+      \draw[dashed,->] (graduation) to node [midway, fill=white] {\scriptsize A} (Daniel);
       \node at (10.3,.7) {Automatically predicted graph for the same text};
       \node (ROOT_) at (9,0) [circle] {}
         child {node (After_) [word] {After} edge from parent node[midway, fill=white] {L}}
         child {node (graduation_) [circle] {}
         {
-          child[alt=<2>{red}{}] {node [word] {graduation} edge from parent node[midway, fill=white] {S}}
+          child {node [word] {graduation} edge from parent node[midway, fill=white] {P}}
         } edge from parent node[midway, fill=white] {H} }
-        child {node [word] {,} edge from parent node[midway, fill=white] {U}}
+        child {node [word] {,} edge from parent [gray] node[midway, fill=white] {U}}
         child {node (moved) [circle,xshift=3mm,yshift=-7mm] {}
         {
-          child {node (John_) [word] {John} edge from parent node[midway, fill=white] {A}}
+          child {node (John_) [word] {Daniel} edge from parent node[midway, fill=white] {A}}
           child {node [word] {moved} edge from parent node[midway, fill=white] {P}}
-          child[alt=<2>{red}{}] {node [word] {to} edge from parent node[midway, fill=white] {F}}
-          child[alt=<2>{red}{}] {node (Paris_) [word] {Paris} edge from parent node[midway, fill=white] {A}}
+          child {node [word] {to} edge from parent node[midway, fill=white] {F}}
+          child {node (Paris_) [word] {Copenhagen} edge from parent node[midway, fill=white] {A}}
         } edge from parent node[midway, fill=white] {H} }
         ;
-      \draw[dashed,->] (graduation_) to node [auto] {\scriptsize A} (John_);
-      \draw[bend left,dashed,->,alt=<2>{red}{}] (graduation_) to[in=90] node [auto] {\scriptsize A} (Paris_);
+      \draw[dashed,thick,->,bend left] (graduation_) to node [midway, fill=white] {\scriptsize A} (John_);
+      \draw[bend left,dashed,thick,->,alt=<2>{red}{}] (graduation_) to[in=90] node [midway, fill=white] {\scriptsize A} (Paris_);
     \end{tikzpicture}
 \end{adjustbox}
 \vfill
 
 \begin{enumerate}
-  \item Match primary edges by terminal yield + label.
+  \item Match terminal yield of primary edges.
   \item Calculate \textbf{precision, recall and F1} scores.
   \item Repeat for remote edges.
 \end{enumerate}
@@ -1600,18 +1558,129 @@ Multi-task TUPA output: \\
 \begin{adjustbox}{center}
     \begin{tabular}{c|c|c}
         \multicolumn{3}{l}{Primary} \\
-        \textbf{P} & \textbf{R} & \textbf{F1} \\ \hline
-        $\frac69=67\%$ & $\frac6{10}=60\%$ & 64\%
+        \textbf{UP} & \textbf{UR} & \textbf{UF} \\ \hline
+        $\frac77=100\%$ & $\frac78\approx87\%$ & $\approx93\%$
     \end{tabular}
-    \hspace{1cm}
+    \hspace{2mm}
     \begin{tabular}{c|c|c}
         \multicolumn{3}{l}{Remote} \\
-        \textbf{P} & \textbf{R} & \textbf{F1} \\ \hline
-        $\frac12=50\%$ & $\frac11=100\%$ & 67\%
+        \textbf{UP} & \textbf{UR} & \textbf{UF} \\ \hline
+        $\frac12=50\%$ & $\frac11=100\%$ & $\approx67\%$
     \end{tabular}
 \end{adjustbox}
 \end{frame}
 
+\begin{frame}
+\frametitle{Labeled Evaluation of UCCA Parsing}
+\begin{adjustbox}{frame,scale=.55,center}
+    \begin{tikzpicture}[level distance=12mm, sibling distance=19mm, ->, thick,
+        every circle node/.append style={fill=black},
+        edge from parent/.append style={nodes={font=\scriptsize}},
+        edge from parent path={(\tikzparentnode.center) -- (\tikzchildnode.north)}]
+      \tikzstyle{word} = [font=\rmfamily,color=black]
+      \node at (0,.7) {True (human-annotated) graph};
+      \node (ROOT) at (0,0) [circle] {}
+        child {node (After) [word] {After} edge from parent node[midway, fill=white] {L}}
+        child {node (graduation) [circle] {}
+        {
+          child {node [word] {graduation} edge from parent node[midway, fill=white] {P}}
+        } edge from parent node[midway, fill=white] {H} }
+        child {node [word] {,} edge from parent [gray] node[midway, fill=white] {U}}
+        child {node (moved) [circle] {}
+        {
+          child {node (Daniel) [word] {Daniel} edge from parent node[midway, fill=white] {A}}
+          child[red] {node [word] {moved} edge from parent node[midway, fill=white] {P}}
+          child {node [circle] {}
+          {
+            child {node [word] {to} edge from parent[red] node[midway, fill=white] {R}}
+            child {node [word] {Copenhagen} edge from parent[red] node[midway, fill=white] {C}}
+          } edge from parent[red] node[midway, fill=white] {A} }
+        } edge from parent node[midway, fill=white] {H} }
+        ;
+      \draw[dashed,->] (graduation) to node [midway, fill=white] {\scriptsize A} (Daniel);
+      \node at (10.3,.7) {Automatically predicted graph for the same text};
+      \node (ROOT_) at (9,0) [circle] {}
+        child {node (After_) [word] {After} edge from parent node[midway, fill=white] {L}}
+        child {node (graduation_) [circle] {}
+        {
+          child {node [word] {graduation} edge from parent node[midway, fill=white] {P}}
+        } edge from parent node[midway, fill=white] {H} }
+        child {node [word] {,} edge from parent [gray] node[midway, fill=white] {U}}
+        child {node (moved) [circle,xshift=3mm,yshift=-7mm] {}
+        {
+          child {node (John_) [word] {Daniel} edge from parent node[midway, fill=white] {A}}
+          child {node [word] {moved} edge from parent node[midway, fill=white] {P}}
+          child[red] {node [word] {to} edge from parent node[midway, fill=white] {F}}
+          child[red] {node (Paris_) [word] {Copenhagen} edge from parent node[midway, fill=white] {A}}
+        } edge from parent node[midway, fill=white] {H} }
+        ;
+      \draw[dashed,thick,->,bend left] (graduation_) to node [midway, fill=white] {\scriptsize A} (John_);
+      \draw[bend left,dashed,thick,->,red] (graduation_) to[in=90] node [midway, fill=white] {\scriptsize A} (Paris_);
+    \end{tikzpicture}
+\end{adjustbox}
+\vfill
+
+\begin{enumerate}
+  \item Match terminal yield \textbf{+ label} of primary edges.
+  \item Calculate \textbf{precision, recall and F1} scores.
+  \item Repeat for remote edges.
+\end{enumerate}
+
+\pause
+\vfill
+\begin{adjustbox}{center}
+    \begin{tabular}{c|c|c}
+        \multicolumn{3}{l}{Primary} \\
+        \textbf{LP} & \textbf{LR} & \textbf{LF} \\ \hline
+        $\frac57\approx71\%$ & $\frac58\approx62\%$ & $\approx67\%$
+    \end{tabular}
+    \hspace{2mm}
+    \begin{tabular}{c|c|c}
+        \multicolumn{3}{l}{Remote} \\
+        \textbf{LP} & \textbf{LR} & \textbf{LF} \\ \hline
+        $\frac12=50\%$ & $\frac11=100\%$ & $\approx67\%$
+    \end{tabular}
+\end{adjustbox}
+\end{frame}
+
+\begin{frame}{The Fine Print}
+\begin{minipage}{.5\textwidth}
+    Evaluation ignores:
+    \begin{enumerate}
+        \item Punctuation
+        \item Unary children
+        \item Nested Centers
+        \item Attachment of common Functions
+    \end{enumerate}
+\end{minipage}
+\begin{minipage}{.45\textwidth}
+\begin{adjustbox}{frame,scale=.55,center}
+    \begin{tikzpicture}[level distance=15mm, sibling distance=19mm, ->, thick,
+        every circle node/.append style={fill=black},
+        edge from parent/.append style={nodes={font=\scriptsize}},
+        edge from parent path={(\tikzparentnode.center) -- (\tikzchildnode.north)}]
+      \tikzstyle{word} = [font=\rmfamily,color=black]
+      \node at (0,7) [circle] {}
+        child {node [circle] {}
+        {
+          child {node [word] {the} edge from parent node[midway, fill=white] {F}}
+          child {node [circle] {}
+          {
+            child {node [word] {graduation} edge from parent node[midway, fill=white] {P}}
+          } edge from parent node[midway, fill=white] {C} }
+        } edge from parent node[midway, fill=white] {H} }
+        child {node [word] {.} edge from parent [gray] node[midway, fill=white] {U}}
+        ;
+      \node at (0,1) {\LARGE$\downarrow$};
+      \node at (0,0) [circle] {}
+        child {node [word] {the} edge from parent node[midway, fill=white] {F}}
+        child {node [word] {graduation} edge from parent node[midway, fill=white] {\{H,P\}} }
+        child {node [word] {.} edge from parent [gray] node[midway, fill=white] {U}}
+        ;
+    \end{tikzpicture}
+\end{adjustbox}
+\end{minipage}
+\end{frame}
 
 \begin{frame}
 \frametitle{UCCA vs. UD}
@@ -1623,24 +1692,24 @@ Multi-task TUPA output: \\
 \begin{tikzpicture}[level distance=2cm, sibling distance=25mm, ->, draw=Indigo, thick]
     \node[anchor=west,font=\bf\sffamily\LARGE,Indigo] at (-3,0) {UCCA};
     \node (ROOT) [fill=Indigo, circle] {}
-      child {node (After) {After} edge from parent node[left] {L\;}}
+      child {node (After) {After} edge from parent node[midway, fill=white] {L\;}}
       child {node (graduation) [fill=Indigo, circle] {}
       {
-        child {node {graduation} edge from parent node[left] {P}}
-      } edge from parent node[left] {H} }
-      child {node {,} edge from parent node[right] {U}}
+        child {node {graduation} edge from parent node[midway, fill=white] {P}}
+      } edge from parent node[midway, fill=white] {H} }
+      child {node {,} edge from parent node[midway, fill=white] {U}}
       child {node (moved) [fill=Indigo, circle] {}
       {
-        child {node (Daniel) {Daniel} edge from parent node[left] {A}}
-        child {node {moved} edge from parent node[left] {P}}
+        child {node (Daniel) {Daniel} edge from parent node[midway, fill=white] {A}}
+        child {node {moved} edge from parent node[midway, fill=white] {P}}
         child {node [fill=Indigo, circle] {}
         {
-          child {node {to} edge from parent node[left] {R}}
-          child {node {Copenhagen} edge from parent node[left] {C}}
-        } edge from parent node[left] {A} }
-      } edge from parent node[right] {H} }
+          child {node {to} edge from parent node[midway, fill=white] {R}}
+          child {node {Copenhagen} edge from parent node[midway, fill=white] {C}}
+        } edge from parent node[midway, fill=white] {A} }
+      } edge from parent node[midway, fill=white] {H} }
       ;
-    \draw[dashed,->] (graduation) to node [auto] {A} (Daniel);
+    \draw[dashed,->] (graduation) to node [midway, fill=white] {A} (Daniel);
 \end{tikzpicture}
         }
     \end{minipage}
@@ -1648,8 +1717,6 @@ Multi-task TUPA output: \\
     \end{minipage}
     
     {\color{DarkBlue}\bf\sffamily\Large UD}
-    
-    \vspace{-14mm}
     
     \rmfamily
     \begin{dependency}[text only label, edge style={-{Latex[length=2mm]}, color=DarkBlue, thick},
@@ -1711,7 +1778,7 @@ Multi-task TUPA output: \\
 \pause
 \vfill
 
-Evaluate by matching edges \citep{hershcovich2019content}.
+Unlabeled evaluation by matching \citep{hershcovich2019content}.
 
 \pause
 \vfill
@@ -1721,24 +1788,24 @@ Evaluate by matching edges \citep{hershcovich2019content}.
 \begin{tikzpicture}[level distance=17mm, sibling distance=25mm, ->, draw=Indigo, thick]
     \node[anchor=west,font=\sffamily\LARGE,Indigo] at (-4,0) {UCCA};
     \node (ROOT) [fill=Indigo, circle] {}
-      child {node (After) {After} edge from parent node[left] {L\;}}
+      child {node (After) {After} edge from parent node[midway, fill=white] {L\;}}
       child {node (graduation) [fill=Indigo, circle] {}
       {
-        child {node {graduation} edge from parent node[left] {P}}
-      } edge from parent node[left] {H} }
-      child {node {,} edge from parent node[right] {U}}
+        child {node {graduation} edge from parent node[midway, fill=white] {P}}
+      } edge from parent node[midway, fill=white] {H} }
+      child {node {,} edge from parent [gray] node[midway, fill=white] {U}}
       child {node (moved) [fill=Indigo, circle] {}
       {
-        child {node (Daniel) {Daniel} edge from parent node[left] {A}}
-        child {node {moved} edge from parent node[left] {P}}
+        child {node (Daniel) {Daniel} edge from parent node[midway, fill=white] {A}}
+        child {node {moved} edge from parent node[midway, fill=white] {P}}
         child {node [fill=Indigo, circle] {}
         {
-          child {node {to} edge from parent node[left] {R}}
-          child {node {Copenhagen} edge from parent node[left] {C}}
-        } edge from parent node[left] {A} }
-      } edge from parent node[right] {H} }
+          child {node {to} edge from parent node[midway, fill=white] {R}}
+          child {node {Copenhagen} edge from parent node[midway, fill=white] {C}}
+        } edge from parent node[midway, fill=white] {A} }
+      } edge from parent node[midway, fill=white] {H} }
       ;
-    \draw[dashed,->] (graduation) to node [auto] {A} (Daniel);
+    \draw[dashed,->] (graduation) to node [midway, fill=white] {A} (Daniel);
 \end{tikzpicture}
 }
 \end{minipage}
@@ -1746,184 +1813,11 @@ Evaluate by matching edges \citep{hershcovich2019content}.
 \begin{minipage}[b]{.4\textwidth}
     \large
     \begin{tabular}{c|c|c}
-        \textbf{P} & \textbf{R} & \textbf{F1} \\ \hline
-        $\frac89=89\%$ & $\frac8{10}=80\%$ & 84\%
+        \textbf{UP} & \textbf{UR} & \textbf{UF} \\ \hline
+        $\frac78\approx87\%$ & $\frac78\approx87\%$ & $\approx87\%$
     \end{tabular}
     \vspace{1cm}
 \end{minipage}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Scenes and non-Scenes, Relations and Participants}
-\begin{flushright}
-\scalebox{.9}{
-\begin{tikzpicture}[level distance=15mm, sibling distance=21mm, ->, draw=Indigo, thick]
-    \node[anchor=west,font=\sffamily\LARGE,Indigo] at (-4,0) {UCCA};
-    \node (ROOT) [fill=Indigo, circle] {}
-      child {node (After) {After} edge from parent node[above] {L\;}}
-      child {node (graduation) [fill=Indigo, circle] {}
-      {
-        child {node {graduation} edge from parent [Indigo] node[left] {P}}
-      } edge from parent [alt=<2>{red}{}] node[left] {H} }
-      child {node {,} edge from parent node[right] {U}}
-      child {node (moved) [fill=Indigo, circle] {}
-      {
-        child {node (Daniel) {Daniel} edge from parent [alt=<3>{red}{Indigo}] node[above] {A}}
-        child {node {moved} edge from parent [Indigo] node[left] {P}}
-        child {node [fill=Indigo, circle] {}
-        {
-          child {node {to} edge from parent [Indigo] node[left] {R}}
-          child {node {Copenhagen} edge from parent [Indigo] node[right] {C}}
-        } edge from parent [alt=<3>{red}{Indigo}] node[right] {A} }
-      } edge from parent [alt=<2>{red}{}] node[above] {H} }
-      ;
-    \draw[dashed,->] (graduation) to node [auto] {A} (Daniel);
-\end{tikzpicture}
-}
-\end{flushright}
-
-\vspace{-13mm}
-
-{\color{DarkBlue}\Large\sffamily Converted UD}
-
-\vspace{-1mm}
-
-\scalebox{.9}{\convertedudgraduation}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Multi-word Expressions}
-
-\begin{flushright}
-\scalebox{.5}{
-\begin{tikzpicture}[level distance=15mm, sibling distance=28mm, ->, draw=Indigo, thick,
-  level 2/.style={sibling distance=16mm}]
-  \tikzstyle{word} = [color=black]
-    \node[anchor=west,font=\sffamily\LARGE,Indigo] at (-4,0) {UCCA};
-    \node (ROOT) [fill=Indigo, circle] {}
-      child {node (They) [word] {They} edge from parent node[above] {A}}
-      child {node [word] {thought} edge from parent node[left] {P}}
-      child {node (abouttakingashortbreak) [fill=Indigo, circle] {}
-      {
-        child {node [word] {about} edge from parent [Indigo] node[left] {R}}
-        child {node (takingabreak) [fill=Indigo, circle] {}
-        {
-          child {node [word] {taking} edge from parent [alt=<3>{red}{Indigo}] node[above] {F}}
-          child {node [word] {a} edge from parent [alt=<3>{red}{Indigo}] node[right] {F}}
-          child {node [word] (short) {short} edge from parent[draw=none]}
-          child {node [word] {break} edge from parent [alt=<3>{red}{Indigo}] node[right] {C}}
-        } edge from parent [Indigo] node[right] {P} }
-      } edge from parent node[above] {A} }
-      ;
-    \draw[bend left,dashed,->] (abouttakingashortbreak) to node [auto] {A} (They);
-    \draw[bend left,->] (abouttakingashortbreak) to node [auto] {D} (short);
-\end{tikzpicture}
-}
-\end{flushright}
-
-\vspace{-12mm}
-
-\only<1>{
-    {\color{DarkBlue}\Large\sffamily UD}
-
-     \begin{dependency}[line width=1.5pt]
-        \begin{deptext}[column sep=.5em,ampersand replacement=\^,font=\rmfamily]
-       They \^ thought \^ about \^ taking \^ a \^ short \^ break \\
-         \end{deptext}
-        \deproot[draw=DarkBlue]{2}{root}
-        \depedge[draw=DarkBlue]{2}{1}{nsubj}
-        \depedge[edge start x offset=-4pt,draw=DarkBlue]{2}{4}{advcl}
-        \depedge[draw=DarkBlue]{4}{3}{mark}
-        \depedge[draw=DarkBlue]{4}{7}{dobj}
-        \depedge[draw=DarkBlue]{7}{5}{det}
-        \depedge[draw=DarkBlue]{7}{6}{amod}
-    \end{dependency}
-}
-\only<2->{
-  \vspace{-16mm}
-    
-  {\color{DarkBlue}\Large\sffamily Converted UD}
-  
-  \scalebox{.8}{
-  \begin{tikzpicture}[level distance=17mm, sibling distance=28mm, ->, draw=DarkBlue, thick,
-      every node/.append style={sloped,anchor=south,auto=false,font=\scriptsize},
-      level 2/.style={sibling distance=19mm},
-      edge from parent path={(\tikzparentnode.center) -- (\tikzchildnode.north)}]
-    \tikzstyle{word} = [font=\rmfamily,color=black]
-    \node (ROOT) [fill=DarkBlue, circle] {}
-      child {node (They) [word] {They} edge from parent node {nsubj}}
-      child {node [word] {thought} edge from parent node {head}}
-      child {node (abouttakingashortbreak) [fill=DarkBlue, circle] {}
-      {
-        child {node [word] {about} edge from parent node {mark}}
-        child {node (takingabreak) [fill=DarkBlue, circle] {}
-        {
-          child {node [word] {taking} edge from parent node {head}}
-          child {node [word] {a} edge from parent node {det}}
-          child {node [word] (short) {short} edge from parent node {\;amod}}
-          child {node [word] {break} edge from parent node {head}}
-        } edge from parent node {dobj} }
-      } edge from parent node {advcl} }
-      ;
-  \end{tikzpicture}
-  }
-}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Linkage between Scenes}
-
-\begin{flushright}    
-    \scalebox{.8}{
-    \begin{tikzpicture}[level distance=15mm, sibling distance=39mm, ->, draw=Indigo, thick,
-  level 2/.style={sibling distance=16mm},
-  every circle node/.append style={fill=Indigo}]
-  \tikzstyle{word} = [color=black]
-    \node[anchor=west,font=\sffamily\LARGE,Indigo] at (-6,0) {UCCA};
-      \node (ROOT) [circle] {}
-        child {node [circle] {}
-        {
-          child {node [word] {From} edge from parent [Indigo] node[left] {R}}
-          child {node [word] {the} edge from parent [Indigo] node[left] {E}}
-          child {node [word] {{\color{white}F}\color{black}moment} edge from parent [Indigo] node[right] {C}}
-        } edge from parent [alt=<2>{red}{}] node[above] {L} }
-        child {node [circle] {}
-        {
-          child {node [word] {you{\color{white}k}} edge from parent node[left] {A}}
-          child {node [word] {{\color{white}y}enter} edge from parent node[right] {P}}
-        } edge from parent node[left] {H} }
-        child {node [circle] {}
-        {
-          child {node (comma) [word] {,} edge from parent [draw=none]}
-          child {node [word] {you{\color{white}k}} edge from parent node[left] {A}}
-          child {node [word] {{\color{white}y}know} edge from parent node[right] {S}}
-        } edge from parent node[above] {H} }
-        ;
-      \draw[->] (ROOT) to node [right] {U} (comma);
-    \end{tikzpicture}
-    }
-\end{flushright}
-
-    {\color{DarkBlue}\Large\sffamily UD}
-    
-    \vspace{-5mm}
-    
-    \begin{dependency}[line width=1.5pt]
-        \begin{deptext}[column sep=.5em,ampersand replacement=\^,font=\rmfamily]
-        From \^ the \^ moment \^ you \^ enter \^ , \^ you \^ know \\
-        \end{deptext}
-        \depedge[draw=DarkBlue]{3}{1}{case}
-        \depedge[draw=DarkBlue]{3}{2}{det}
-        \depedge[draw=DarkBlue]{8}{3}{obl}
-        \depedge[draw=DarkBlue]{3}{5}{acl}
-        \depedge[draw=DarkBlue,edge start x offset=-5pt]{5}{4}{nsubj}
-        \depedge[draw=DarkBlue]{8}{6}{punct}
-        \depedge[draw=DarkBlue,edge start x offset=-10pt]{8}{7}{nsubj}
-        \deproot[draw=DarkBlue]{8}{root}
-    \end{dependency}
 \end{frame}
 
 \pgfplotstableread{
@@ -1949,7 +1843,7 @@ uf 99 99 100 99 100 83 84 95 76 95 95 86 97 92 84 65 77 61 51 61 63 95 29 36 48 
         xticklabels from table={\finegrainedtranspose}{deprel},
         ylabel={TUPA F1 (\%)},
         y label style={at={(1.15,.5)}},
-        legend style={at={(1.075,.975)}},
+        legend style={at={(1,1.2)}},
         xticklabel style={rotate=90},
         tick label style={font=\scriptsize},
         xticklabel style={anchor=north east},
@@ -1961,11 +1855,9 @@ uf 99 99 100 99 100 83 84 95 76 95 95 86 97 92 84 65 77 61 51 61 63 95 29 36 48 
         \end{tikzpicture}
 \end{frame}
 
-\subsection{Shared Tasks}
-
 \begin{frame}
-\frametitle{Shared tasks: parsing competitions}
-\textit{SemEval 2019 Task 1: Cross-lingual Semantic Parsing}
+\frametitle{Shared Tasks: Parsing Competitions}
+\textit{SemEval 2019 Task 1}
 
 \begin{minipage}{.8\textwidth}
 \begin{itemize}
@@ -2207,8 +2099,8 @@ Winning systems: \'{U}FAL \citep{Sam:Str:20} and Hitachi
 \frametitle{Sentence Splitting for Text Simplification}
 % https://www.aclweb.org/anthology/attachments/P18-1016.Presentation.pdf
     
-    {\color{blue}Last year I read the book John authored} $\rightarrow$ \\
-    \hfill {\color{red}John wrote a book.} {\color{green}I read the book.}
+    {\color{blue}Last year I read the book Daniel authored} $\rightarrow$ \\
+    \hfill {\color{red}Daniel wrote a book.} {\color{green}I read the book.}
     
     \vfill\pause
 
@@ -2356,7 +2248,7 @@ Winning systems: \'{U}FAL \citep{Sam:Str:20} and Hitachi
     \Tree [.\node [circle] (rootd) {};
     \edge node [auto=left]{}; \node (Hed) {He};
     \edge node[auto=right]{}; \node (gave) {gave};
-    \edge node[auto=right]{};\node (John) {John};
+    \edge node[auto=right]{};\node (Daniel) {Daniel};
     \edge node[auto=right]{};
     [.\node [circle] (an appled) {};
     \edge node[auto=left]{}; \node (and) {an};
@@ -2367,7 +2259,7 @@ Winning systems: \'{U}FAL \citep{Sam:Str:20} and Hitachi
     \begin{scope}[dashed]
     \draw (Heu) -- (Hed);
     \draw (gve) -- (gave);
-    \draw (John) -- (john);
+    \draw (Daniel) -- (john);
     \draw (anu) -- (and);
     \draw (appleu) -- (appled);
     \end{scope}
