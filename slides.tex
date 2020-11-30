@@ -19,6 +19,8 @@
 \usepackage{lmodern}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{marvosym}
+\usepackage{pifont}
 \usepackage{color}
 \usepackage{array}
 \usepackage{multirow}
@@ -93,6 +95,11 @@
   \let\reset@color\beamerorig@reset@color}
 \makeatother
 \SoulColor
+
+% Use symbols for footnotes https://tex.stackexchange.com/a/830/26887
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+
+\newcommand{\cmark}{\ding{51}}\newcommand{\xmark}{\ding{55}}
 
 % Outline slides
 \AtBeginSection[]
@@ -1548,7 +1555,7 @@ Multi-task TUPA output: \\
 \vfill
 
 \begin{enumerate}
-  \item Match terminal yield of primary edges.
+  \item Match terminal yield\only<3>{\footnote[1]{Ignoring remotes; collapsing unary children}} of primary edges.
   \item Calculate \textbf{precision, recall and F1} scores.
   \item Repeat for remote edges.
 \end{enumerate}
@@ -1561,7 +1568,7 @@ Multi-task TUPA output: \\
         \textbf{UP} & \textbf{UR} & \textbf{UF} \\ \hline
         $\frac77=100\%$ & $\frac78\approx87\%$ & $\approx93\%$
     \end{tabular}
-    \hspace{2mm}
+    \hspace{1mm}
     \begin{tabular}{c|c|c}
         \multicolumn{3}{l}{Remote} \\
         \textbf{UP} & \textbf{UR} & \textbf{UF} \\ \hline
@@ -1589,7 +1596,7 @@ Multi-task TUPA output: \\
         child {node (moved) [circle] {}
         {
           child {node (Daniel) [word] {Daniel} edge from parent node[midway, fill=white] {A}}
-          child[red] {node [word] {moved} edge from parent node[midway, fill=white] {P}}
+          child {node [word] {moved} edge from parent node[midway, fill=white] {P}}
           child {node [circle] {}
           {
             child {node [word] {to} edge from parent[red] node[midway, fill=white] {R}}
@@ -1621,7 +1628,7 @@ Multi-task TUPA output: \\
 \vfill
 
 \begin{enumerate}
-  \item Match terminal yield \textbf{+ label} of primary edges.
+  \item Match terminal yield\footnote[1]{Ignoring remotes; collapsing unary children} \textbf{+ label} of primary edges.
   \item Calculate \textbf{precision, recall and F1} scores.
   \item Repeat for remote edges.
 \end{enumerate}
@@ -1634,7 +1641,7 @@ Multi-task TUPA output: \\
         \textbf{LP} & \textbf{LR} & \textbf{LF} \\ \hline
         $\frac57\approx71\%$ & $\frac58\approx62\%$ & $\approx67\%$
     \end{tabular}
-    \hspace{2mm}
+    \hspace{1mm}
     \begin{tabular}{c|c|c}
         \multicolumn{3}{l}{Remote} \\
         \textbf{LP} & \textbf{LR} & \textbf{LF} \\ \hline
@@ -1643,17 +1650,25 @@ Multi-task TUPA output: \\
 \end{adjustbox}
 \end{frame}
 
-\begin{frame}{The Fine Print}
-\begin{minipage}{.5\textwidth}
-    Evaluation ignores:
+\begin{frame}{The Fine Print of UCCA Evaluation}
+\begin{minipage}{.675\textwidth}
+    Punctuation edges ignored.
+    \vspace{8mm}\pause
+    
+    Yield excludes remotes, punctuation.
+    \vspace{8mm}\pause
+    
+    Unary children collapsed. \\
+    Correct yield $\Leftrightarrow$ label overlap $\geq 1$.
+    \vspace{8mm}\pause
+    
+    Normalization:
     \begin{enumerate}
-        \item Punctuation
-        \item Unary children
-        \item Nested Centers
-        \item Attachment of common Functions
+        \item Nested Centers flattened.
+        \item Common Functions attached to root.
     \end{enumerate}
 \end{minipage}
-\begin{minipage}{.45\textwidth}
+\begin{minipage}{.3\textwidth}
 \begin{adjustbox}{frame,scale=.55,center}
     \begin{tikzpicture}[level distance=15mm, sibling distance=19mm, ->, thick,
         every circle node/.append style={fill=black},
@@ -1862,7 +1877,6 @@ uf 99 99 100 99 100 83 84 95 76 95 95 86 97 92 84 65 77 61 51 61 63 95 29 36 48 
 \begin{minipage}{.8\textwidth}
 \begin{itemize}
 \item UCCA parsing in English, French and German.
-\item 8 teams participated.
 \end{itemize}
 \end{minipage}
 \hfill
@@ -1877,7 +1891,6 @@ uf 99 99 100 99 100 83 84 95 76 95 95 86 97 92 84 65 77 61 51 61 63 95 29 36 48 
 
 \begin{itemize}
 \item DM, PSD, EDS, UCCA and AMR parsing in English.
-\item 18 teams participated.
 \end{itemize}
 
 \pause
@@ -1887,7 +1900,6 @@ uf 99 99 100 99 100 83 84 95 76 95 95 86 97 92 84 65 77 61 51 61 63 95 29 36 48 
 
 \begin{itemize}
 \item EDS, PTG, UCCA, AMR and DRG parsing in English, Czech, German and Chinese.
-\item 8 teams participated.
 \end{itemize}
 \end{frame}
 
@@ -1896,6 +1908,7 @@ uf 99 99 100 99 100 83 84 95 76 95 95 86 97 92 84 65 77 61 51 61 63 95 29 36 48 
 \begin{itemize}
 \item UCCA parsing in English, French and German.
 \item 8 teams participated.
+\item Evaluation metric: UCCA graph score.
 \item Baseline: TUPA.
 \end{itemize}
 \end{frame}
@@ -1920,29 +1933,6 @@ uf 99 99 100 99 100 83 84 95 76 95 95 86 97 92 84 65 77 61 51 61 63 95 29 36 48 
 
 \begin{frame}
 \frametitle{SemEval 2019 Task 1}
- 8 teams in total:
- \begin{itemize}
- \item
- {\it MaskParse@Deski\~{n}}  {\small Orange Labs, Aix-Marseille University}
- \item
- {\it HLT@SUDA} { \small  Soochow University}
- \item
- {\it T\"{u}Pa} {\small   University of T\"{u}bingen}
- \item
- {\it UC Davis} {\small   University of California, Davis}
- \item    
- {\it GCN-Sem}  {\small   University of Wolverhampton}
- \item
-    {\it CUNY-PekingU} {\small 	 City University of New York, Peking University}
- \item
-{\it DANGNT@UIT.VNU-HCM} {\small   University of Information Technology VNU-HCM}
- \item
-{\it XLangMo} {\small  Zhejiang University}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{SemEval 2019 Task 1}
     \begin{figure}
         \centering
         \includegraphics[width=\textwidth]{Capture}
@@ -1952,9 +1942,9 @@ uf 99 99 100 99 100 83 84 95 76 95 95 86 97 92 84 65 77 61 51 61 63 95 29 36 48 
 \begin{frame}
 \frametitle{SemEval 2019 Task 1}
 
-        HLT@SUDA: \\
-        Neural constituency parser + multi-task + BERT \\
-        French: trained on all languages, with language embedding
+        Winning system: HLT@SUDA \citep{jiang-etal-2019-hlt}. \\
+        Neural constituency parser + multi-task + BERT. \\
+        Multilingual training with language embedding.
         
         \begin{center}
             \includegraphics[width=.8\textwidth]{hltsuda3.png}
@@ -1964,19 +1954,77 @@ uf 99 99 100 99 100 83 84 95 76 95 95 86 97 92 84 65 77 61 51 61 63 95 29 36 48 
 \begin{frame}
 \frametitle{SemEval 2019 Task 1}
 
-        Surprisingly, results in French were close to English and German
+        Results in French were close to English and German
     \begin{itemize}
         \item 
             Demonstrates viability of cross-lingual UCCA parsing
         \item
             Is this because of UCCA's stability in translation?
-    \end{itemize}    
+    \end{itemize}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=.65\textwidth]{Capture}
+    \end{figure}
+    
+    More in part 6: cross-linguistic studies!
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Cross-Framework Evaluation: MRP}
+  \begin{itemize}\itemsep 4pt
+  \item
+    Break down graphs into per-type and overall $F_1$.
+  \item
+    \only<2->{\alert<2>{tops},}
+    \only<3->{\alert<3>{(labeled) edges},}
+    \only<4->{\alert<4>{labels},} \only<5->{\alert<5>{properties},}
+    \only<6->{\alert<6>{anchors},}
+    \only<7->{\alert<7>{attributes}.}
+  \end{itemize}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{center}
+        \only<1>{\includegraphics[trim=35 30 35 70, clip, width=0.95\textwidth]{dot/pierre-retired}}%
+        \only<2>{\includegraphics[trim=35 30 35 70, clip, width=0.95\textwidth]{dot/pierre-retired-tops}}%
+        \only<3>{\includegraphics[trim=35 30 35 70, clip, width=0.95\textwidth]{dot/pierre-retired-edges}}%
+        \only<4>{\includegraphics[trim=35 30 35 70, clip, width=0.95\textwidth]{dot/pierre-retired-labels}}%
+        \only<5>{\includegraphics[trim=35 30 35 70, clip, width=0.95\textwidth]{dot/pierre-retired-properties}}%
+        \only<6>{\includegraphics[trim=35 30 35 70, clip, width=0.95\textwidth]{dot/pierre-retired-anchors}}%
+        \only<7->{\includegraphics[trim=35 30 35 70, clip, width=0.95\textwidth]{dot/pierre-retired}}%
+        \\[-0.5ex]
+        \textit{\color{DarkGreen}Pierre retired.}
+      \end{center}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{block}{Types of Semantic Graph `Atoms'}
+        \begin{center}
+          \scriptsize\tabcolsep 0.3em
+          \begin{tabular}{@{}lccccc@{}}
+            \toprule
+            & \textbf{EDS} & \textbf{PTG}
+            & \textbf{UCCA} & \textbf{AMR}
+            & \textbf{DRG}\\
+            \midrule
+            \alert<2>{Top Nodes} & \cmark & \cmark & \cmark & \cmark & \cmark\\
+            \alert<3>{Labeled Edges} & \cmark & \cmark & \cmark & \cmark & (\cmark)\\
+            \alert<4>{Node Labels} & \cmark & \cmark & \alert<4>{\xmark} & \cmark & \cmark\\
+            \alert<5>{Node Properties} & \cmark & \cmark & \alert<5>{\xmark} & \cmark & \alert<5>{\xmark}\\
+            \alert<6>{Node Anchoring} & \cmark & (\cmark) & (\cmark) & \alert<6>{\xmark} & \alert<6>{\xmark}\\
+            \alert<7>{Edge Attributes} & \xmark & \alert<7>{\cmark} & \alert<7>{\cmark} & \xmark & \xmark\\
+            \bottomrule
+          \end{tabular}
+        \end{center}
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{MRP 2019}
 \begin{itemize}
-\item DM, PSD, EDS, UCCA and AMR parsing in English.
+\item \textbf{DM, PSD, EDS, UCCA and AMR} parsing in English.
 \item 18 teams participated.
+\item Evaluation metric: MRP score.
 \item Baseline: TUPA (generalized beyond UCCA).
 \end{itemize}
 \end{frame}
@@ -2047,7 +2095,7 @@ a b c d e f shape	System	Approach	Overall	DM	PSD	EDS	UCCA	AMR
 \frametitle{MRP 2019}
 Winning system: HIT-SCIR \citep{Che:Dou:Xu:19}.
 
-Transition-based parser (similar to TUPA) + efficient training + BERT.
+Transition-based parser + efficient training + BERT.
 
 \begin{center}
 \includegraphics[width=\textwidth]{hitscir1}
@@ -2056,30 +2104,292 @@ Transition-based parser (similar to TUPA) + efficient training + BERT.
 
 \begin{frame}{MRP 2020}
 \begin{itemize}
-\item EDS, PTG, UCCA, AMR and DRG parsing in English, Czech, German and Chinese.
+\item EDS (English), \\PTG (English and Czech), \\UCCA (English and \textbf{German}), \\AMR (English and Chinese) and \\DRG (English and German) parsing.
 \item 8 teams participated.
+\item Evaluation metric: MRP score.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{MRP 2020}
-\begin{center}
-\begin{tabular}{lccccccccccccccc}
-\toprule
- & \multicolumn{3}{c}{\textbf{EDS}} &  \multicolumn{3}{c}{\textbf{UCCA}} & \multicolumn{3}{c}{\textbf{AMR}} \\
-\cmidrule(l{2pt}r{3pt}){2-4} \cmidrule(l{2pt}r{3pt}){5-7} \cmidrule(l{2pt}r{3pt}){8-10}
- & P & R & F & P & R & F & P & R & F\\
-\midrule
-2019 & .92 & .93 & .93 & .84 & .82 & .83 & .74 & .72 & .73 \\
-2020 & .97 & .97 & .97 & .86 & .80 & .83 & .78 & .79 & .79 \\
-\bottomrule
-\end{tabular}
-\end{center}
+
+\pgfplotstableread{
+a b c d e f shape	System	Overall	AMR DRG EDS PTG UCCA
+1 2 3 4 5 6 1	Hitachi     0.86 0.82	0.93 0.94 0.89 0.75
+1 2 3 4 5 6 1	\'{U}FAL	0.86 0.80 0.94 0.93 0.88 0.76
+1 2 3 4 5 6 1	HIT-SCIR    0.81 0.70 0.89 0.87 0.84 0.75
+1 2 3 4 5 6 1	HUJI-KU     0.64 0.52 0.63 0.80 0.54 0.73
+1 2 3 4 5 6 1	ISCAS       0.48 0.61 0.69 0.86 0.18 0.06
+1 2 3 4 5 6 1	TJU-BLCU    0.30 0.30 0.40 0.49 0.21 0.10
+1 2 3 4 5 6 2	Hitachi	    0.85 .8 .93 {} .87 .79
+1 2 3 4 5 6 2	\'{U}FAL	0.85 .78 .90 {} .91 .81
+1 2 3 4 5 6 2	HIT-SCIR    0.69 .49 .68 {} .78 .80
+1 2 3 4 5 6 2	HUJI-KU     0.60 .45 .62 {} .58  .75
+1 2 3 4 5 6 2	TJU-BLCU    0.20 .25 .34 {} .22 {}
+}\approaches
+
+\pgfdeclareplotmark{circpipe}{\node(0,0){\CircPipe};}
+\pgfdeclareplotmark{globe}{\node(0,0){\Mundus};}
+\pgfdeclareplotmark{largecircpipe}{\node(0,0){\LARGE\CircPipe};}
+\pgfdeclareplotmark{largeglobe}{\node(0,0){\LARGE\Mundus};}
+\begin{frame}[fragile]
+  \frametitle{MRP 2020}
+  \begin{center}\footnotesize
+\begin{tikzpicture}
+    \begin{axis}[
+    enlarge x limits={abs=7mm},
+    ymin=.71,ymax=1,
+    clip=true,
+    ymajorgrids=true,
+    width=\textwidth,
+    height=\textheight,
+    xtick={1,2,3,4,5,6},
+    xticklabels={Overall,AMR,DRG,EDS,PTG,UCCA},
+    xticklabel style={font=\small,anchor=north},
+    xtick align=inside,
+    xticklabel pos=left,
+    tickwidth=0pt,
+    ylabel={All MRP F1},
+    axis background/.style={fill=cyan!10},
+    scatter/classes={1={mark=largecircpipe,color=red,draw opacity=.5,xshift=-4pt},
+                     2={mark=largeglobe,color=blue,draw opacity=.5,xshift=4pt}
+                  },
+    scatter,only marks,mark size=7,scatter src=explicit symbolic,
+    legend cell align={left},
+    legend style={font=\tiny,at={(0,1)},anchor=north west}
+    ]
+    \addplot table[x=a,y=Overall,meta=shape]{\approaches};
+    \addplot table[x=b,y=AMR,meta=shape]{\approaches};
+    \addplot table[x=c,y=DRG,meta=shape]{\approaches};
+    \addplot table[x=d,y=EDS,meta=shape]{\approaches};
+    \addplot table[x=e,y=PTG,meta=shape]{\approaches};
+    \addplot table[x=f,y=UCCA,meta=shape]{\approaches};
+    \legend{Cross-Framework,Cross-Lingual};
+    \end{axis}
+\end{tikzpicture}
+  \end{center}
 \end{frame}
 
 \begin{frame}{MRP 2020}
-Winning systems: \'{U}FAL \citep{Sam:Str:20} and Hitachi
-    \citep{Oza:Mor:Kor:20}, encoder-decoder with pre-trained transformers.
+Winning systems: encoder-decoder with transformers. \\
+{\small \'{U}FAL \citep{Sam:Str:20}, Hitachi \citep{Oza:Mor:Kor:20}.}
+
+\begin{minipage}{.45\textwidth}
+\begin{center}
+\includegraphics[width=\textwidth]{ufal}
+\end{center}
+\end{minipage}
+\begin{minipage}{.45\textwidth}
+\begin{center}
+\includegraphics[width=1.25\textwidth]{hitachi}
+\end{center}
+\end{minipage}
 \end{frame}
+
+\pgfplotstableread{
+framework {first name} first {second name} second {third name} third {first lpps name} {first lpps} {second lpps name} {second lpps} {third lpps name} {third lpps}	{first cl name}	{first cl}	{second cl name}	{second cl}	{third cl name}	{third cl}
+Overall	{Hitachi + {\'U}FAL}	0.86	{}	{}	HIT-SCIR	0.81	{Hitachi + {\'U}FAL}	0.85	{}	{}	HIT-SCIR	0.80	{Hitachi + {\'U}FAL}	0.85	{}	{}	HIT-SCIR	0.69
+AMR	Hitachi	0.82	{\'U}FAL	0.80	HIT-SCIR	0.70	Hitachi	0.79	{\'U}FAL	0.78	HIT-SCIR	0.70	Hitachi	0.80	{\'U}FAL	0.78	HIT-SCIR	0.49
+% DRG	{\'U}FAL	0.94	Hitachi	0.93	HIT-SCIR	0.89	{}	{}	{}	{}	{}	{}	Hitachi	0.93	{\'U}FAL	0.90	HIT-SCIR	0.68
+EDS	Hitachi	0.94	{\'U}FAL	0.93	HIT-SCIR	0.87	Hitachi	0.97	{\'U}FAL	0.95	HIT-SCIR	0.89	{}	{}	{}	{}	{}	{}
+% PTG	Hitachi	0.89	{\'U}FAL	0.88	HIT-SCIR	0.84	{\'U}FAL	0.83	Hitachi	0.82	HIT-SCIR	0.78	{\'U}FAL	0.91	Hitachi	0.87	HIT-SCIR	0.78
+UCCA	{\'U}FAL	0.76	{Hitachi + HIT-SCIR}	0.75	{}	{}	{Hitachi + {\'U}FAL}	0.83	{}	{}	HIT-SCIR	0.82	{\'U}FAL	0.81	HIT-SCIR	0.80	Hitachi	0.79
+}\scores
+
+\pgfplotstableread{
+framework {first name} first {second name} second {third name} third {first lpps name} {first lpps} {second lpps name} {second lpps} {third lpps name} {third lpps}
+Overall HIT-SCIR  0.862 SJTU--NICT  0.853 SUDA--Alibaba 0.840 Saarland  0.849 HIT-SCIR  0.848 SJTU--NICT  0.842
+AMR Amazon  0.734 HIT-SCIR  0.729 SJTU--NICT  0.720 Saarland  0.731 Amazon  0.711 {{\'U}FAL MRPipe} 0.707
+% DM  SJTU--NICT  0.955 HIT-SCIR  0.951 ShanghaiTech  0.949 HIT-SCIR  0.950 SJTU--NICT  0.949 Saarland  0.948
+EDS SUDA--Alibaba 0.918 HIT-SCIR  0.907 SJTU--NICT  0.899 SUDA--Alibaba 0.926 Saarland  0.920 SJTU--NICT  0.912
+% PSD Saarland  0.913 Hitachi 0.912 SJTU--NICT  0.912 SJTU--NICT  0.885 Hitachi 0.884 Saarland  0.883
+UCCA  HIT-SCIR  0.817 SUDA--Alibaba 0.784 SJTU--NICT  0.778 HIT-SCIR  0.826 SUDA--Alibaba 0.821 Saarland  0.762
+}\oldscores
+
+\begin{frame}[fragile]
+  \frametitle{State of the Art in MRP}
+  MRP F1 on English \textit{The Little Prince} evaluation set:
+  \begin{center}
+  \scalebox{.7}{
+  \begin{tikzpicture}
+    \begin{axis}[
+    ybar=0pt,
+    enlarge x limits={abs=11mm},
+    enlarge y limits={value=0.16,upper},
+    ymin=0,
+    clip=true,
+    width=1.3\textwidth,
+    height=.7\textheight,
+    bar width=20pt,
+    xtick = {0,...,20},  % https://tex.stackexchange.com/a/310709/26887
+    xticklabels from table={\oldscores}{framework},
+    xticklabel style={font=\small,anchor=north},
+    xtick align=inside,
+    xticklabel pos=left,
+    yticklabels=none,
+    tickwidth=0pt,
+    ylabel={2019},
+    nodes near coords={\scalebox{.6}{\pgfmathprintnumber[fixed zerofill,precision=2]{\pgfplotspointmeta}}},
+    every node near coord/.append style={font=\small,rotate=90,anchor=west},
+    axis background/.style={fill=green!10},
+    ]
+    \addplot[restrict x to domain=1:20,fill=Peru]table[x expr=\coordindex,y=third lpps]{\oldscores};
+    \addplot[restrict x to domain=1:20,color=black, point meta=explicit symbolic, only marks, nodes near coords,
+              every node near coord/.append style={anchor=east}]
+              table[x expr=\coordindex,y=third lpps, meta=third lpps name] {\oldscores};
+    \addplot[restrict x to domain=1:20,fill=Silver]table[x expr=\coordindex,y=second lpps]{\oldscores};
+    \addplot[restrict x to domain=1:20,color=black, point meta=explicit symbolic, only marks, nodes near coords,
+              every node near coord/.append style={anchor=east}]
+              table[x expr=\coordindex,y=second lpps, meta=second lpps name] {\oldscores};
+    \addplot[restrict x to domain=1:20,fill=Gold]table[x expr=\coordindex,y=first lpps]{\oldscores};
+    \addplot[restrict x to domain=1:20,color=black, point meta=explicit symbolic, only marks, nodes near coords,
+              every node near coord/.append style={anchor=east}]
+              table[x expr=\coordindex,y=first lpps, meta=first lpps name] {\oldscores};
+    \end{axis}
+    \end{tikzpicture}
+    }
+  \end{center}
+  \begin{center}
+  \scalebox{.7}{
+  \begin{tikzpicture}
+    \begin{axis}[
+    ybar=0pt,
+    enlarge x limits={abs=11mm},
+    enlarge y limits={value=0.16,upper},
+    ymin=0,
+    clip=true,
+    width=1.3\textwidth,
+    height=.7\textheight,
+    bar width=20pt,
+    xtick = {0,...,20},  % https://tex.stackexchange.com/a/310709/26887
+    xticklabels from table={\scores}{framework},
+    xticklabel style={font=\small,anchor=north},
+    xtick align=inside,
+    xticklabel pos=left,
+    yticklabels=none,
+    tickwidth=0pt,
+    ylabel={2020},
+    nodes near coords={\scalebox{.6}{\pgfmathprintnumber[fixed zerofill,precision=2]{\pgfplotspointmeta}}},
+    every node near coord/.append style={font=\small,rotate=90,anchor=west},
+    axis background/.style={fill=red!10},
+    ]
+    \addplot[restrict x to domain=1:20,fill=Peru]table[x expr=\coordindex,y=third lpps]{\scores};
+    \addplot[restrict x to domain=1:20,color=black, point meta=explicit symbolic, only marks, nodes near coords,
+              every node near coord/.append style={anchor=east}]
+              table[x expr=\coordindex,y=third lpps, meta=third lpps name] {\scores};
+    \addplot[restrict x to domain=1:20,fill=Silver]table[x expr=\coordindex,y=second lpps]{\scores};
+    \addplot[restrict x to domain=1:20,color=black, point meta=explicit symbolic, only marks, nodes near coords,
+              every node near coord/.append style={anchor=east}]
+              table[x expr=\coordindex,y=second lpps, meta=second lpps name] {\scores};
+    \addplot[restrict x to domain=1:20,fill=Gold]table[x expr=\coordindex,y=first lpps]{\scores};
+    \addplot[restrict x to domain=1:20,color=black, point meta=explicit symbolic, only marks, nodes near coords,
+              every node near coord/.append style={anchor=east}]
+              table[x expr=\coordindex,y=first lpps, meta=first lpps name] {\scores};
+    \end{axis}
+    \end{tikzpicture}
+    }
+  \end{center}
+\end{frame}
+
+\pgfplotstableread{
+part {first lpps name} {first lpps} {second lpps name} {second lpps} {third lpps name} {third lpps}
+Overall   {Hitachi + {\'U}FAL}	0.85	{}	{}	HIT-SCIR	0.80
+all   {Hitachi + {\'U}FAL}	0.83	{}	{}	HIT-SCIR	0.82
+edges	Hitachi	0.73	{\'U}FAL	0.74	HIT-SCIR	0.71
+attributes	{\'U}FAL	0.57	Hitachi	0.49	HIT-SCIR	0.49
+}\uccascores
+
+\pgfplotstableread{
+part {first lpps name} {first lpps} {second lpps name} {second lpps} {third lpps name} {third lpps}
+Overall   Saarland  0.849 HIT-SCIR  0.848 SJTU--NICT  0.842
+all   HIT-SCIR  0.826 SUDA--Alibaba 0.821 Saarland  0.762
+edges  HIT-SCIR  0.7308 SUDA--Alibaba 0.7179 Saarland  0.6127
+attributes  HIT-SCIR  0.4837 SUDA--Alibaba 0.3810 Saarland  0.3433
+}\olduccascores
+
+\begin{frame}[fragile]
+  \frametitle{State of the Art in MRP}
+  UCCA \textbf{fine-grained} MRP F1 on English \textit{The Little Prince}:\footnote{Attribute \texttt{remote=True} in 5\% of edges.}
+  \begin{center}
+  \scalebox{.7}{
+  \begin{tikzpicture}
+    \begin{axis}[
+    ybar=0pt,
+    enlarge x limits={abs=11mm},
+    enlarge y limits={value=0.16,upper},
+    ymin=0,
+    clip=true,
+    width=1.3\textwidth,
+    height=.7\textheight,
+    bar width=20pt,
+    xtick = {0,...,20},  % https://tex.stackexchange.com/a/310709/26887
+    xticklabels from table={\olduccascores}{part},
+    xticklabel style={font=\small,anchor=north},
+    xtick align=inside,
+    xticklabel pos=left,
+    yticklabels=none,
+    tickwidth=0pt,
+    ylabel={2019},
+    nodes near coords={\scalebox{.6}{\pgfmathprintnumber[fixed zerofill,precision=2]{\pgfplotspointmeta}}},
+    every node near coord/.append style={font=\small,rotate=90,anchor=west},
+    axis background/.style={fill=green!10},
+    ]
+    \addplot[restrict x to domain=1:20,fill=Peru]table[x expr=\coordindex,y=third lpps]{\olduccascores};
+    \addplot[restrict x to domain=1:20,color=black, point meta=explicit symbolic, only marks, nodes near coords,
+              every node near coord/.append style={anchor=east}]
+              table[x expr=\coordindex,y=third lpps, meta=third lpps name] {\olduccascores};
+    \addplot[restrict x to domain=1:20,fill=Silver]table[x expr=\coordindex,y=second lpps]{\olduccascores};
+    \addplot[restrict x to domain=1:20,color=black, point meta=explicit symbolic, only marks, nodes near coords,
+              every node near coord/.append style={anchor=east}]
+              table[x expr=\coordindex,y=second lpps, meta=second lpps name] {\olduccascores};
+    \addplot[restrict x to domain=1:20,fill=Gold]table[x expr=\coordindex,y=first lpps]{\olduccascores};
+    \addplot[restrict x to domain=1:20,color=black, point meta=explicit symbolic, only marks, nodes near coords,
+              every node near coord/.append style={anchor=east}]
+              table[x expr=\coordindex,y=first lpps, meta=first lpps name] {\olduccascores};
+    \end{axis}
+    \end{tikzpicture}
+    }
+  \end{center}
+  \begin{center}
+  \scalebox{.7}{
+  \begin{tikzpicture}
+    \begin{axis}[
+    ybar=0pt,
+    enlarge x limits={abs=11mm},
+    enlarge y limits={value=0.16,upper},
+    ymin=0,
+    clip=true,
+    width=1.3\textwidth,
+    height=.7\textheight,
+    bar width=20pt,
+    xtick = {0,...,20},  % https://tex.stackexchange.com/a/310709/26887
+    xticklabels from table={\uccascores}{part},
+    xticklabel style={font=\small,anchor=north},
+    xtick align=inside,
+    xticklabel pos=left,
+    yticklabels=none,
+    tickwidth=0pt,
+    ylabel={2020},
+    nodes near coords={\scalebox{.6}{\pgfmathprintnumber[fixed zerofill,precision=2]{\pgfplotspointmeta}}},
+    every node near coord/.append style={font=\small,rotate=90,anchor=west},
+    axis background/.style={fill=red!10},
+    ]
+    \addplot[restrict x to domain=1:20,fill=Peru]table[x expr=\coordindex,y=third lpps]{\uccascores};
+    \addplot[restrict x to domain=1:20,color=black, point meta=explicit symbolic, only marks, nodes near coords,
+              every node near coord/.append style={anchor=east}]
+              table[x expr=\coordindex,y=third lpps, meta=third lpps name] {\uccascores};
+    \addplot[restrict x to domain=1:20,fill=Silver]table[x expr=\coordindex,y=second lpps]{\uccascores};
+    \addplot[restrict x to domain=1:20,color=black, point meta=explicit symbolic, only marks, nodes near coords,
+              every node near coord/.append style={anchor=east}]
+              table[x expr=\coordindex,y=second lpps, meta=second lpps name] {\uccascores};
+    \addplot[restrict x to domain=1:20,fill=Gold]table[x expr=\coordindex,y=first lpps]{\uccascores};
+    \addplot[restrict x to domain=1:20,color=black, point meta=explicit symbolic, only marks, nodes near coords,
+              every node near coord/.append style={anchor=east}]
+              table[x expr=\coordindex,y=first lpps, meta=first lpps name] {\uccascores};
+    \end{axis}
+    \end{tikzpicture}
+    }
+  \end{center}
+\end{frame}
+
 
 \section{Applications}
 
